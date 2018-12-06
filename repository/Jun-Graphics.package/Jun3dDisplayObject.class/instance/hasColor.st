@@ -1,0 +1,3 @@
+testing
+hasColor
+	^ color isNil

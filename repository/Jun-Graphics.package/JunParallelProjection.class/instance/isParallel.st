@@ -1,0 +1,3 @@
+testing
+isParallel
+	^ true

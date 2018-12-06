@@ -1,0 +1,3 @@
+parameters
+b
+	^self f

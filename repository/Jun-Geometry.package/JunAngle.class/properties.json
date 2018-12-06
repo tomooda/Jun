@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "tomooda 12/25/2014 10:33",
+	"super" : "JunGeometry",
+	"category" : "Jun-Geometry-Basic",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"rad",
+		"deg",
+		"sin",
+		"cos",
+		"tan"
+	],
+	"name" : "JunAngle",
+	"type" : "normal"
+}

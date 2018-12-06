@@ -1,0 +1,3 @@
+converting
+asArrayOfTrianglePolygons
+	^ Array new

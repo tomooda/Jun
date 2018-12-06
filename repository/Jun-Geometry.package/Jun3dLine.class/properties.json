@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "tomooda 12/25/2014 09:43",
+	"super" : "JunLine",
+	"category" : "Jun-Geometry-Basic",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"x0",
+		"y0",
+		"z0",
+		"f",
+		"g",
+		"h"
+	],
+	"name" : "Jun3dLine",
+	"type" : "normal"
+}

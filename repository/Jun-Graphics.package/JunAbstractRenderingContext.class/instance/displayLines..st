@@ -1,0 +1,3 @@
+displaying
+displayLines: aCollectionOfJun3dPoint
+	^ self subclassResponsibility

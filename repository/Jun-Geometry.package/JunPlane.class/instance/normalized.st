@@ -1,0 +1,3 @@
+functions
+normalized
+	^ self normalizedPlane

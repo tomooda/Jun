@@ -1,0 +1,3 @@
+converting
+asAngle
+	^ self

@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "tomooda 12/28/2014 11:00",
+	"super" : "JunBoundingObject",
+	"category" : "Jun-Geometry-Abstract",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"origin",
+		"corner"
+	],
+	"name" : "JunBoundingBox",
+	"type" : "normal"
+}

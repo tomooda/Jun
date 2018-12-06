@@ -1,0 +1,3 @@
+accessing
+normalUnitVector
+	^ self unitVector

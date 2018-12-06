@@ -1,0 +1,3 @@
+accessing
+flushBytes
+	bytes := nil

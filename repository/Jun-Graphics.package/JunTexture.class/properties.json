@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Jun-Graphics-Texture",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"form",
+		"bytes",
+		"bytesCacheEnabled"
+	],
+	"name" : "JunTexture",
+	"type" : "normal"
+}

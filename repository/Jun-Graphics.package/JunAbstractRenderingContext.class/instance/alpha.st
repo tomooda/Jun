@@ -1,0 +1,3 @@
+accessing
+alpha
+	^ color alpha

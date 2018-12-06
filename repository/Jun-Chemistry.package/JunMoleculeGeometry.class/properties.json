@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Jun-Chemistry-Geometry",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"atoms",
+		"bonds",
+		"label"
+	],
+	"name" : "JunMoleculeGeometry",
+	"type" : "normal"
+}

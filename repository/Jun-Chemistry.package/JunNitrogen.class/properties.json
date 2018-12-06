@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "JunAtom",
+	"category" : "Jun-Chemistry-Atoms",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "JunNitrogen",
+	"type" : "normal"
+}

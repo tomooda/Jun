@@ -1,0 +1,3 @@
+accessing
+unknownWedge
+	wedge := #unknown

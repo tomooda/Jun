@@ -1,0 +1,3 @@
+functions
+r
+	^ self rho

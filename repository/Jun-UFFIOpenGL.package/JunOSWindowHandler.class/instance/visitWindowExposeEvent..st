@@ -1,0 +1,2 @@
+private
+visitWindowExposeEvent: anEvent

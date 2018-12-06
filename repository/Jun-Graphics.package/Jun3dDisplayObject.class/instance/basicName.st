@@ -1,0 +1,3 @@
+accessing
+basicName
+	^ name

@@ -1,0 +1,4 @@
+operations
+fitToBoundingBox: aJun3dBoundingBox
+	self fitEyepointToBoundingBox: aJun3dBoundingBox.
+	self fitSightpointToBoundingBox: aJun3dBoundingBox

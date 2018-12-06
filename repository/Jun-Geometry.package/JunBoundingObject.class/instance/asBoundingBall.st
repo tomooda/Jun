@@ -1,0 +1,3 @@
+converting
+asBoundingBall
+	^ self boundingBall

@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "Jun-Graphics-Projection",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"eyePoint",
+		"sightPoint",
+		"upVector",
+		"near",
+		"far",
+		"viewFactor"
+	],
+	"name" : "JunProjection",
+	"type" : "normal"
+}

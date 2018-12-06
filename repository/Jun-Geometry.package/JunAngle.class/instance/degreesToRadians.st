@@ -1,0 +1,3 @@
+converting
+degreesToRadians
+	^ self rad

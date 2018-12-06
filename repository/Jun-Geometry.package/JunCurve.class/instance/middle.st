@@ -1,0 +1,3 @@
+accessing
+middle
+	^ self center

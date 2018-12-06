@@ -1,0 +1,3 @@
+arithmetic
+generality
+	^ 120

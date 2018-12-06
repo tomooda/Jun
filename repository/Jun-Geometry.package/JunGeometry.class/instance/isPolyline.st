@@ -1,0 +1,3 @@
+testing
+isPolyline
+	^ false

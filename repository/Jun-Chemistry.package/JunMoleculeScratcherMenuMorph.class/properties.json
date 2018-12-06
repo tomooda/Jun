@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "",
+	"super" : "Morph",
+	"category" : "Jun-Chemistry-Morphs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"origin",
+		"actions",
+		"font",
+		"arg",
+		"selectionIndex"
+	],
+	"name" : "JunMoleculeScratcherMenuMorph",
+	"type" : "normal"
+}

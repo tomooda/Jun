@@ -1,0 +1,3 @@
+converting
+asDisplayObject
+	^ self

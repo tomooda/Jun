@@ -1,0 +1,3 @@
+culling
+enableCullface
+	cullfaceEnabled := true

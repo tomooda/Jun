@@ -1,0 +1,3 @@
+converting
+asArrayOfLines
+	^ Array new

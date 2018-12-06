@@ -1,0 +1,3 @@
+enumerating
+geometriesDo: aBlock
+	self subclassResponsibility

@@ -1,0 +1,22 @@
+{
+	"commentStamp" : "",
+	"super" : "JunAbstractRenderingContext",
+	"category" : "Jun-UFFIOpenGL",
+	"classinstvars" : [ ],
+	"pools" : [
+		"UFFIOpenGLConstants"
+	],
+	"classvars" : [
+		"Cache",
+		"CacheLock",
+		"GL"
+	],
+	"instvars" : [
+		"context",
+		"frameBuffer",
+		"forms",
+		"textures"
+	],
+	"name" : "JunUFFIOpenGLRenderingContext",
+	"type" : "normal"
+}

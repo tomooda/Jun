@@ -1,0 +1,3 @@
+accessing
+basicNormalVector
+	^ normalVector

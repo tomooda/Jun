@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "JunAbstract3dMorph",
+	"category" : "Jun-Graphics-Morphs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"object"
+	],
+	"name" : "JunSimple3dMorph",
+	"type" : "normal"
+}

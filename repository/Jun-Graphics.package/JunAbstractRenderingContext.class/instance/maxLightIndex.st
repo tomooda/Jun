@@ -1,0 +1,3 @@
+accessing
+maxLightIndex
+	^ self subclassResponsibility

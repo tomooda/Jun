@@ -1,0 +1,23 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "Jun-Graphics-RenderingContext",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"color",
+		"lineWidth",
+		"pointSize",
+		"presentation",
+		"transformation",
+		"projection",
+		"lights",
+		"lightStates",
+		"lightIndex",
+		"ambientLight",
+		"backgroundColor"
+	],
+	"name" : "JunAbstractRenderingContext",
+	"type" : "normal"
+}

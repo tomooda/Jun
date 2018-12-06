@@ -1,0 +1,3 @@
+converting
+asArrayOfTriangles
+	^ Array new

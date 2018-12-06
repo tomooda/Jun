@@ -1,0 +1,19 @@
+{
+	"classtraitcomposition" : "TJunDisplayModel classTrait",
+	"classvars" : [ ],
+	"instvars" : [
+		"projection",
+		"dragger",
+		"dirty",
+		"form",
+		"updateProcess"
+	],
+	"name" : "JunAbstract3dMorph",
+	"commentStamp" : "",
+	"super" : "Morph",
+	"traitcomposition" : "TJunDisplayModel",
+	"type" : "normal",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"category" : "Jun-Graphics-Morphs"
+}

@@ -1,0 +1,3 @@
+accessing
+flatWedge
+	wedge := #flat

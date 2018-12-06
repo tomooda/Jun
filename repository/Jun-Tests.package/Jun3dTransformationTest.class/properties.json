@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "JunTestCase",
+	"category" : "Jun-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Jun3dTransformationTest",
+	"type" : "normal"
+}

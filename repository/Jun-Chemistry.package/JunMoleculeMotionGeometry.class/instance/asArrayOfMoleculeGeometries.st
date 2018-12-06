@@ -1,0 +1,3 @@
+converting
+asArrayOfMoleculeGeometries
+	^ moleculeGeometries asArray

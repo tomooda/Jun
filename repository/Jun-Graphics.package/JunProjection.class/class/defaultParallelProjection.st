@@ -1,0 +1,3 @@
+constants
+defaultParallelProjection
+	^ self defaultParallelProjectionClass default

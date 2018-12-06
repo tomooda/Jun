@@ -1,0 +1,3 @@
+moving
+sightPoint
+	^ sightPoint

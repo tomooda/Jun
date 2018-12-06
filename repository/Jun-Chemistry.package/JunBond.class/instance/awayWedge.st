@@ -1,0 +1,3 @@
+accessing
+awayWedge
+	wedge := #away

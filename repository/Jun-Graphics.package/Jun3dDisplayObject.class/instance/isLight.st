@@ -1,0 +1,3 @@
+testing
+isLight
+	^ self false

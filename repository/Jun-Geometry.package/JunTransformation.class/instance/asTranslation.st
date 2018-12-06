@@ -1,0 +1,3 @@
+converting
+asTranslation
+	^ self subclassResponsibility

@@ -1,0 +1,3 @@
+converting
+asPerspectiveProjection
+	^ self subclassResponsibility

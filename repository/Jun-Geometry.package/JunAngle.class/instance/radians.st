@@ -1,0 +1,3 @@
+accessing
+radians
+	^ self rad

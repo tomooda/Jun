@@ -1,0 +1,3 @@
+constants
+default
+	^ self defaultPerspective

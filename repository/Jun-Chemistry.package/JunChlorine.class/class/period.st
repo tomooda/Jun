@@ -1,0 +1,3 @@
+accessing
+period
+	^ 3

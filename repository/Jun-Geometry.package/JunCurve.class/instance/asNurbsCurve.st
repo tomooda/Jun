@@ -1,0 +1,3 @@
+converting
+asNurbsCurve
+	^ self subclassResponsibility

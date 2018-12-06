@@ -1,0 +1,3 @@
+displaying
+displayPolygon: aCollectionOfJun3dPoint
+	^ self subclassResponsibility

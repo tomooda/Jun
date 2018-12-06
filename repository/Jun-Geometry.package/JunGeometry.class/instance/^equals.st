@@ -1,0 +1,3 @@
+comparing
+= aGeometry
+	^ self subclassResponsibility

@@ -1,0 +1,3 @@
+accessing
+towardsWedge
+	wedge := #towards

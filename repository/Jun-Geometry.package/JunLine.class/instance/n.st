@@ -1,0 +1,3 @@
+parameters
+n
+	^ self subclassResponsibility

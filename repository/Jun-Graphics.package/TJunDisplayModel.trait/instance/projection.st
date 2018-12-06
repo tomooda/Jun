@@ -1,0 +1,3 @@
+accessing
+projection
+	^ self subclassResponsibility

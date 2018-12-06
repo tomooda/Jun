@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Jun-Chemistry-Geometry",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"moleculeGeometries"
+	],
+	"name" : "JunMoleculeMotionGeometry",
+	"type" : "normal"
+}

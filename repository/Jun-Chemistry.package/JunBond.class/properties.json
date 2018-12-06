@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Jun-Chemistry-Atoms",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"atom1",
+		"atom2",
+		"order",
+		"wedge"
+	],
+	"name" : "JunBond",
+	"type" : "normal"
+}

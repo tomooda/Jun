@@ -1,0 +1,3 @@
+utilities
+numberOfPolygons
+	^ self subclassResponsibility

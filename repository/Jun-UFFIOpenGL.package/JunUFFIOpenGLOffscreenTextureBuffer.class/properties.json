@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "UFFIOpenGLOffscreenTextureBuffer",
+	"category" : "Jun-UFFIOpenGL",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "JunUFFIOpenGLOffscreenTextureBuffer",
+	"type" : "normal"
+}

@@ -1,0 +1,3 @@
+accessing
+sightVector
+	^ sightPoint - eyePoint

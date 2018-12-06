@@ -1,0 +1,3 @@
+converting
+asArrayOfPlanes
+	^ Array new

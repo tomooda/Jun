@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Jun3dDisplayObject",
+	"category" : "Jun-Graphics-Objects",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"points",
+		"normalVector",
+		"normalVectors",
+		"texture",
+		"texturePoints"
+	],
+	"name" : "Jun3dDisplayPolygon",
+	"type" : "normal"
+}

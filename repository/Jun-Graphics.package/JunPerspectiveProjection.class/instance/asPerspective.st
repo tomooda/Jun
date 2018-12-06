@@ -1,0 +1,3 @@
+accessing
+asPerspective
+	^ self copy

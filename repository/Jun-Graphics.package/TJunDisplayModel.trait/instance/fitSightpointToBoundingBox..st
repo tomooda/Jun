@@ -1,0 +1,3 @@
+operations
+fitSightpointToBoundingBox: aJun3dBoundingBox
+	self projection sightPoint: aJun3dBoundingBox center

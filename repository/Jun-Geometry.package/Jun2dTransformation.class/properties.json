@@ -1,0 +1,21 @@
+{
+	"commentStamp" : "tomooda 12/25/2014 10:32",
+	"super" : "JunTransformation",
+	"category" : "Jun-Geometry-Basic",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"a",
+		"b",
+		"p",
+		"c",
+		"d",
+		"q",
+		"m",
+		"n",
+		"s"
+	],
+	"name" : "Jun2dTransformation",
+	"type" : "normal"
+}

@@ -1,0 +1,3 @@
+accessing
+maxLightIndex
+	^ 4

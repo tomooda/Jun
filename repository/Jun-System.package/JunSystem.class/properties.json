@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Model",
+	"category" : "Jun-System-System",
+	"classinstvars" : [
+		"soleSystem"
+	],
+	"pools" : [ ],
+	"classvars" : [
+		"ArchitectureName",
+		"MemorisedFonts",
+		"PlatformName",
+		"RuntimeVersion"
+	],
+	"instvars" : [ ],
+	"name" : "JunSystem",
+	"type" : "normal"
+}

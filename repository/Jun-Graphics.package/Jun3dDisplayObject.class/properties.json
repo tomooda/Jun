@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "tomooda 12/28/2014 10:37",
+	"super" : "Object",
+	"category" : "Jun-Graphics-Objects",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"name",
+		"color",
+		"bounds"
+	],
+	"name" : "Jun3dDisplayObject",
+	"type" : "normal"
+}

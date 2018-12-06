@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "JunPoint",
+	"category" : "Jun-Geometry-Basic",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"x",
+		"y",
+		"z"
+	],
+	"name" : "Jun3dPoint",
+	"type" : "normal"
+}

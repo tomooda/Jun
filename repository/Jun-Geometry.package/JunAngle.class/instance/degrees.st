@@ -1,0 +1,3 @@
+accessing
+degrees
+	^ self deg

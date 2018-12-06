@@ -1,0 +1,3 @@
+culling
+disableCullface
+	^ self subclassResponsibility

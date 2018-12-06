@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "JunProjection",
+	"category" : "Jun-Graphics-Projection",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"fovy",
+		"zoomHeight"
+	],
+	"name" : "JunPerspectiveProjection",
+	"type" : "normal"
+}
