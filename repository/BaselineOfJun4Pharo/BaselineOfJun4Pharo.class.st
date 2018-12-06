@@ -27,7 +27,7 @@ BaselineOfJun4Pharo >> baseline: spec [
 			spec
 				group: 'Core' with: #('Jun-System' 'Jun-UFFIOpenGL' 'Minimal');
 				group: 'Minimal' with: #('Jun-Geometry' 'Jun-Graphics');
-				group: 'default' with: #('Jun-Tests' 'Core' 'Chemistry');
+				group: 'default' with: #('Jun-Tests' 'Core' 'Chemistry' 'Jun-GT');
 				group: 'Chemistry' with: #(#'Jun-Chemistry' 'Core');
 				group: 'Chemistry-Full' with: #('Chemistry' 'Jun-Chemistry-Babel') ]
 ]
