@@ -1,3 +1,0 @@
-converting
-asRotationMatrix
-	^ self subclassResponsibility

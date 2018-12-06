@@ -1,3 +1,0 @@
-testing
-isPerspective
-	^ true

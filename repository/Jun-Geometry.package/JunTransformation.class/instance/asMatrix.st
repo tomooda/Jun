@@ -1,3 +1,0 @@
-converting
-asMatrix
-	^ self subclassResponsibility

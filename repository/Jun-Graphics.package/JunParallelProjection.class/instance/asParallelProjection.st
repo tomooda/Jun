@@ -1,3 +1,0 @@
-converting
-asParallelProjection
-	^ self copy

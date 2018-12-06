@@ -1,3 +1,0 @@
-accessing
-regularHeight
-	^ self subclassResponsibility

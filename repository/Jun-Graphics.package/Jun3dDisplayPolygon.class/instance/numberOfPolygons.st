@@ -1,3 +1,0 @@
-accessing
-numberOfPolygons
-	^ 1

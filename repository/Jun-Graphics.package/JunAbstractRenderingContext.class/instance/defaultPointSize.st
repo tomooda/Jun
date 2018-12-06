@@ -1,3 +1,0 @@
-defaults
-defaultPointSize
-	^ 1

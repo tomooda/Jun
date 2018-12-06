@@ -1,3 +1,0 @@
-zooming
-zoomHeight
-	^ self subclassResponsibility 

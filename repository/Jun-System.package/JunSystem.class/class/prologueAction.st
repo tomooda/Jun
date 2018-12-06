@@ -1,5 +1,0 @@
-login
-prologueAction
-	"JunSystem prologueAction."
-
-	

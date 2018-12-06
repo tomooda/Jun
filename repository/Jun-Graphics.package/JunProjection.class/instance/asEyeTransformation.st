@@ -1,3 +1,0 @@
-converting
-asEyeTransformation
-	^ self subclassResponsibility

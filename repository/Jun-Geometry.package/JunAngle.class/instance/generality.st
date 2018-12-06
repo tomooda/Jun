@@ -1,3 +1,0 @@
-arithmetic
-generality
-	^ 120

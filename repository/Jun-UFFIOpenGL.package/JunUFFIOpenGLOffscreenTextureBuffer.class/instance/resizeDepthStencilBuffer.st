@@ -1,3 +1,0 @@
-session management
-resizeDepthStencilBuffer
-	self resizeDepthBuffer

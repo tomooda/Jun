@@ -1,3 +1,0 @@
-testing
-isZero
-	^ rad isZero

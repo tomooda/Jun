@@ -1,3 +1,0 @@
-projecting
-parallelProjection: aJunParallelProjection
-	^ self subclassResponsibility

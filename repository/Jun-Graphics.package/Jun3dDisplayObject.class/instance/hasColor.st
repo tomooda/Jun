@@ -1,3 +1,0 @@
-testing
-hasColor
-	^ color isNil

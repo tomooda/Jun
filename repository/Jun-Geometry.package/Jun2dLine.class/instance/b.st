@@ -1,3 +1,0 @@
-parameters
-b
-	^self f

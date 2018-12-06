@@ -1,3 +1,0 @@
-functions
-squared
-	^ self * self

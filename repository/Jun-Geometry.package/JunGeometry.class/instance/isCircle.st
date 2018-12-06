@@ -1,3 +1,0 @@
-testing
-isCircle
-	^ false

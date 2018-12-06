@@ -1,3 +1,0 @@
-functions
-normalized
-	^ self normalizedLine

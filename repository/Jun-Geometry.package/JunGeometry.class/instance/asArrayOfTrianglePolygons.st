@@ -1,3 +1,0 @@
-converting
-asArrayOfTrianglePolygons
-	^ Array new

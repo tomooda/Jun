@@ -1,3 +1,0 @@
-testing
-respondsToArithmetic
-	^ true

@@ -1,3 +1,0 @@
-lighting
-disableLightIndex: anInteger
-	

@@ -1,3 +1,0 @@
-geometry
-tailLength
-	^ 10

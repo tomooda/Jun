@@ -1,3 +1,0 @@
-converting
-asJunOpenGL3dObjectWithPoints
-	^self asJunOpenGL3dObject

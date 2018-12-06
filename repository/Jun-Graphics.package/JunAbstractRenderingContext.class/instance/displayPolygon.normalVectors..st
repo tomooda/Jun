@@ -1,3 +1,0 @@
-displaying
-displayPolygon: anArrayOfJun3dPoint1 normalVectors: anArrayOfJun3dPoint2
-	^ self subclassResponsibility

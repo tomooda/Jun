@@ -1,2 +1,0 @@
-private
-visitWindowExposeEvent: anEvent

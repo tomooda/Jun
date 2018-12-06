@@ -1,3 +1,0 @@
-defaults
-defaultLineWidth
-	^ 1

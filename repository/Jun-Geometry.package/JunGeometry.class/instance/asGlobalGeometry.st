@@ -1,3 +1,0 @@
-converting
-asGlobalGeometry
-	^ self

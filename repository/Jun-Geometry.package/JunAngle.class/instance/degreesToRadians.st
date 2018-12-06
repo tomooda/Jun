@@ -1,3 +1,0 @@
-converting
-degreesToRadians
-	^ self rad

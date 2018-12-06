@@ -1,3 +1,0 @@
-instance creation
-components: aCollectionOfJun3dDisplayObject
-	^ self new setComponents: aCollectionOfJun3dDisplayObject asOrderedCollection

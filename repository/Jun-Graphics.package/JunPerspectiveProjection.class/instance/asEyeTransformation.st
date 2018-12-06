@@ -1,3 +1,0 @@
-accessing
-asEyeTransformation
-	^ self asParallelProjection asEyeTransformation

@@ -1,3 +1,0 @@
-enumerating
-polygonsDo: aBlock
-	self subclassResponsibility

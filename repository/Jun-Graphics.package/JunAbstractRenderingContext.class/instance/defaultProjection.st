@@ -1,3 +1,0 @@
-defaults
-defaultProjection
-	^ JunProjection default

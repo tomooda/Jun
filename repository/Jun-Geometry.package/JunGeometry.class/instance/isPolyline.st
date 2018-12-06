@@ -1,3 +1,0 @@
-testing
-isPolyline
-	^ false

@@ -1,3 +1,0 @@
-lighting
-lightStates
-	^ lightStates copy

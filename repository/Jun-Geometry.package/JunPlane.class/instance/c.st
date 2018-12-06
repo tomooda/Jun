@@ -1,3 +1,0 @@
-parameters
-c
-	^ c

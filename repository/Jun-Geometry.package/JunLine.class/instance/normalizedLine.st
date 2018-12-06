@@ -1,3 +1,0 @@
-functions
-normalizedLine
-	^ self subclassResponsibility

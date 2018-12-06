@@ -1,3 +1,0 @@
-lighting
-disableLighting
-	^ self subclassResponsibility

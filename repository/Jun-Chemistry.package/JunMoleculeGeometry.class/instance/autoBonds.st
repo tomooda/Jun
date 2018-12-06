@@ -1,3 +1,0 @@
-computing
-autoBonds
-	self autoBondsByCovalentRadii

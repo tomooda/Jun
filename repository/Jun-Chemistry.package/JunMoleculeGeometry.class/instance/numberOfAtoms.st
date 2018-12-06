@@ -1,3 +1,0 @@
-accessing
-numberOfAtoms
-	^ atoms size

@@ -1,3 +1,0 @@
-parameters
-f
-	^ f

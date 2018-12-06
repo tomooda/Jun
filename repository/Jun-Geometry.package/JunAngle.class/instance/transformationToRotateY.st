@@ -1,3 +1,0 @@
-transforming
-transformationToRotateY
-	^Jun3dTransformation rotateY: self

@@ -1,2 +1,0 @@
-private
-visitWindowFrameEvent: anEvent

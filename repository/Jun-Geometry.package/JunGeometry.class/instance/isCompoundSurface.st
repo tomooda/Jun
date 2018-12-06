@@ -1,3 +1,0 @@
-testing
-isCompoundSurface
-	^ false

@@ -1,3 +1,0 @@
-accessing
-boundingBall
-	^ self asBoundingBall

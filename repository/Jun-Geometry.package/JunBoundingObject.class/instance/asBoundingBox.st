@@ -1,3 +1,0 @@
-converting
-asBoundingBox
-	^ self boundingBox

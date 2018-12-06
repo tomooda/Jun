@@ -1,3 +1,0 @@
-displaying
-clear
-	^ self subclassResponsibility

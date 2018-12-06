@@ -1,3 +1,0 @@
-converting
-asArrayOfPlanes
-	^ Array new

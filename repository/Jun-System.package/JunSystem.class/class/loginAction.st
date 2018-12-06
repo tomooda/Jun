@@ -1,5 +1,0 @@
-login
-loginAction
-	"JunSystem loginAction."
-
-	

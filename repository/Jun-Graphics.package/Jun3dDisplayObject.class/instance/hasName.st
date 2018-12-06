@@ -1,3 +1,0 @@
-testing
-hasName
-	^ name notNil

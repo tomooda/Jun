@@ -1,3 +1,0 @@
-accessing
-numberOfBonds
-	^ bonds size

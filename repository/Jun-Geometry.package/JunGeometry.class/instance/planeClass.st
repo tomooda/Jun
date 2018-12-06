@@ -1,3 +1,0 @@
-class access
-planeClass
-	^ JunPlane

@@ -1,3 +1,0 @@
-accessing
-dragger
-	^ self subclassResponsibility

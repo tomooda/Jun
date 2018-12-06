@@ -1,3 +1,0 @@
-converting
-interpretedBy: aJunCoordinateSystem 
-	^self transform: aJunCoordinateSystem globalInvTransformation

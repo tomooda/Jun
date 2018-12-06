@@ -1,3 +1,0 @@
-comparing
-> aMagnitude
-	^ aMagnitude < self

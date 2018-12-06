@@ -1,3 +1,0 @@
-converting
-asArrayOfTriangles
-	^ Array new

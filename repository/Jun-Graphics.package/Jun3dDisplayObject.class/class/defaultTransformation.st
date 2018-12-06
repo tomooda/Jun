@@ -1,3 +1,0 @@
-defaults
-defaultTransformation
-	^ Jun3dTransformation unity

@@ -1,3 +1,0 @@
-converting
-asArrayOfLines
-	^ Array new

@@ -1,3 +1,0 @@
-converting
-reversed
-	^ self subclassResponsibility

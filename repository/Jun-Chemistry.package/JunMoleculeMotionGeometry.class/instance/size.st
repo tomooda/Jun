@@ -1,3 +1,0 @@
-accessing
-size
-	^ moleculeGeometries size

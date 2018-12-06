@@ -1,3 +1,0 @@
-constants
-accuracy
-	^ JunGeometry accuracy

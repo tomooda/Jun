@@ -1,3 +1,0 @@
-accessing
-maxLightIndex
-	^ 7

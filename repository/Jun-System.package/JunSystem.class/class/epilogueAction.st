@@ -1,3 +1,0 @@
-logout
-epilogueAction
-	"JunSystem epilogueAction."

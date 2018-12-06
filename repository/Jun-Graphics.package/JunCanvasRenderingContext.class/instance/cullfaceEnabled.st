@@ -1,3 +1,0 @@
-culling
-cullfaceEnabled
-	^ cullfaceEnabled = true

@@ -1,3 +1,0 @@
-class access
-moleculeClass
-	^ JunMoleculeGeometry
