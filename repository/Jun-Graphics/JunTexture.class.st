@@ -218,7 +218,7 @@ JunTexture class >> example4 [
 	angle1 := (angle1 + 2 asDegrees) uniformed.
 	angle2 := (angle2 + 0.2 asDegrees) uniformed.
 	dist > 10.0
-		ifTrue: [ dist := dist - 0.1 ].
+		ifTrue: [ dist := dist - 0.4 ].
 	rc projection: projection.
 	rc clear.
 	rc ambientLight: Color gray.
@@ -243,7 +243,7 @@ JunTexture class >> example5 [
 	earth := earth transform: (Jun3dTransformation scale: 6.371).
 	moon := Jun3dDisplayObject moon: 10.
 	moon := moon transform: (Jun3dTransformation scale: 1.737).
-	moon := moon transform: (Jun3dTransformation translate: 337.862 _, 0 _, 184.591).
+	moon := moon transform: (Jun3dTransformation translate: 337.862 _ , 0 _ , 184.591).
 	spin := Jun3dTransformation rotateZ: 1 asDegrees.
 	dist := 800.0.
 	rc := (Form extent: World extent depth: 32) renderingContext.
@@ -253,12 +253,14 @@ JunTexture class >> example5 [
 	morph borderWidth: 0.
 	morph center: World center.
 	morph openInWorld.
-	rc disableCullface.
+	rc
+		disableCullface;
+		enableLighting.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: (0.8788091044555351 _, 0.010043532622348972 _, 0.4770677995615762) * dist
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: (0.8788091044555351 _ , 0.010043532622348972 _ , 0.4770677995615762) * dist
+		sightPoint: 0 _ , 0 _ , 0
+		upVector: 0 _ , 0 _ , 1
 		fovy: 20 asDegrees
 		near: 0.1
 		far: 10000.0.
@@ -269,7 +271,7 @@ JunTexture class >> example5 [
 	earth renderOn: rc.
 	moon renderOn: rc.
 	earth := earth transform: spin.
-	dist := dist - 2.0 max: 100.0.
+	dist := dist - 5.0 max: 100.0.
 	rc flush.
 	morph changed.
 	(Delay forMilliseconds: 10) wait ] repeat ] forkAt: Processor userBackgroundPriority.
@@ -308,7 +310,7 @@ JunTexture class >> example6 [
 	angle1 := (angle1 + 2 asDegrees) uniformed.
 	angle2 := (angle2 + 0.2 asDegrees) uniformed.
 	dist > 10.0
-		ifTrue: [ dist := dist - 0.1 ].
+		ifTrue: [ dist := dist - 0.4 ].
 	rc projection: projection.
 	rc clear.
 	rc ambientLight: Color gray.
