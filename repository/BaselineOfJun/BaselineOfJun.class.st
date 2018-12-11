@@ -13,7 +13,7 @@ BaselineOfJun >> baseline: spec [
 				baseline: 'UFFIOpenGL'
 					with: [ spec repository: 'github://ronsaldo/uffi-opengl/tonel' ];
 				baseline: 'OSSubprocess'
-					with: [ spec repository: 'https://github.com/pharo-contributions/OSSubprocess/repository' ].
+					with: [ spec repository: 'github://pharo-contributions/OSSubprocess/repository' ].
 			spec
 				package: 'Jun-Geometry';
 				package: 'Jun-Graphics' with: [ spec requires: #('Jun-Geometry') ];
