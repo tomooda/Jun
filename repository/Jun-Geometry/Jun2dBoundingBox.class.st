@@ -17,9 +17,9 @@ Jun2dBoundingBox >> area [
 Jun2dBoundingBox >> asPointArray [
 	^ Array
 		with: self origin
-		with: self corner x _, self origin y
+		with: self corner x ,, self origin y
 		with: self corner
-		with: self origin x _, self corner y
+		with: self origin x ,, self corner y
 ]
 
 { #category : #testing }

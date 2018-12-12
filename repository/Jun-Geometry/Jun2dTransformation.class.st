@@ -66,8 +66,7 @@ Jun2dTransformation class >> alignVector: aJun2dPoint1 to: aJun2dPoint2 [
 			(Array
 				with: aJun2dPoint1 -> aJun2dPoint1
 				with:
-					(aJun2dPoint1 y negated _ , aJun2dPoint1 x)
-						-> (aJun2dPoint2 y negated _ , aJun2dPoint2 x)
+					(aJun2dPoint1 y negated ,, aJun2dPoint1 x) -> (aJun2dPoint2 y negated ,, aJun2dPoint2 x)
 				with: zero -> zero)
 ]
 
@@ -90,18 +89,21 @@ Jun2dTransformation class >> example1 [
 Jun2dTransformation class >> example2 [
 	"Jun2dTransformation example2."
 
-	| form fromPoint toPoint tT canvas  |
-	form := Form extent: 300@250 depth: 32.
-	fromPoint := 50 _, 100.
-	toPoint := 100 _, 50.
-	tT := Jun2dTransformation translate: 100 _, 100.
+	| form fromPoint toPoint tT canvas |
+	form := Form extent: 300 @ 250 depth: 32.
+	fromPoint := 50 ,, 100.
+	toPoint := 100 ,, 50.
+	tT := Jun2dTransformation translate: 100 ,, 100.
 	canvas := form getCanvas.
 	canvas fillColor: Color white.
 	canvas line: fromPoint asPoint to: toPoint asPoint color: Color blue.
-	canvas line: (fromPoint transform: tT) asPoint to: (toPoint transform: tT) asPoint color: Color red.
+	canvas
+		line: (fromPoint transform: tT) asPoint
+		to: (toPoint transform: tT) asPoint
+		color: Color red.
 	canvas flush.
 	form asMorph openInWindow.
-	^tT
+	^ tT
 ]
 
 { #category : #examples }
@@ -110,9 +112,9 @@ Jun2dTransformation class >> example3 [
 
 	| form fromPoint toPoint tS canvas |
 	form := Form extent: 300 @ 250 depth: 32.
-	fromPoint := 50 _ , 100.
-	toPoint := 100 _ , 50.
-	tS := Jun2dTransformation scale: 2 _ , 2.
+	fromPoint := 50 ,, 100.
+	toPoint := 100 ,, 50.
+	tS := Jun2dTransformation scale: 2 ,, 2.
 	canvas := form getCanvas.
 	canvas fillColor: Color white.
 	canvas line: fromPoint asPoint to: toPoint asPoint color: Color blue.
@@ -131,8 +133,8 @@ Jun2dTransformation class >> example4 [
 
 	| form fromPoint toPoint tR canvas |
 	form := Form extent: 300 @ 250 depth: 32.
-	fromPoint := 50 _ , 100.
-	toPoint := 100 _ , 50.
+	fromPoint := 50 ,, 100.
+	toPoint := 100 ,, 50.
 	tR := Jun2dTransformation rotate: (JunAngle fromDeg: 20).
 	canvas := form getCanvas.
 	canvas fillColor: Color white.
@@ -152,17 +154,16 @@ Jun2dTransformation class >> example5 [
 
 	| form fromPoint toPoint tR canvas |
 	form := Form extent: 300 @ 250 depth: 32.
-	fromPoint := 50 _, 100.
-	toPoint := 100 _, 50.
+	fromPoint := 50 ,, 100.
+	toPoint := 100 ,, 50.
 	tR := Jun2dTransformation rotate: (JunAngle fromDeg: 20).
 	canvas := form getCanvas.
 	canvas fillColor: Color white.
-	canvas
-		line: fromPoint asPoint
-		to: toPoint asPoint
-		color: Color blue.
+	canvas line: fromPoint asPoint to: toPoint asPoint color: Color blue.
 	10 to: 170 by: 10 do: [ :angle | 
-		tR := Jun2dTransformation rotate: (JunAngle fromDeg: angle) around: (fromPoint center: toPoint).
+		tR := Jun2dTransformation
+			rotate: (JunAngle fromDeg: angle)
+			around: (fromPoint center: toPoint).
 		canvas
 			line: (fromPoint transform: tR) asPoint
 			to: (toPoint transform: tR) asPoint

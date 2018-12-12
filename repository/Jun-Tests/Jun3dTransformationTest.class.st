@@ -8,37 +8,34 @@ Class {
 Jun3dTransformationTest >> testAlignPoints [
 	| maps t |
 	maps := Array
-		with: (0 _ , 0 _ , 0) -> (0 _ , -1 _ , 0)
-		with: (1 _ , 0 _ , 0) -> (-1 _ , 0 _ , 0)
-		with: (0 _ , 2 _ , 0) -> (0 _ , 1 _ , 0)
-		with: (0 _ , 0 _ , 1) -> (0 _ , 0 _ , 1).
+		with: (0 ,, 0 ,, 0) -> (0 ,, -1 ,, 0)
+		with: (1 ,, 0 ,, 0) -> (-1 ,, 0 ,, 0)
+		with: (0 ,, 2 ,, 0) -> (0 ,, 1 ,, 0)
+		with: (0 ,, 0 ,, 1) -> (0 ,, 0 ,, 1).
 	t := Jun3dTransformation alignPoints: maps.
-	maps
-		do: [ :assoc | self assert: (assoc key transform: t) equals: assoc value ]
+	maps do: [ :assoc | self assert: (assoc key transform: t) equals: assoc value ]
 ]
 
 { #category : #tests }
 Jun3dTransformationTest >> testApplyToPoint [
 	| t p |
 	t := Jun3dTransformation scale: 2.
-	p := 2_, -3_, 4.
+	p := 2 ,, -3 ,, 4.
 	self assert: (t applyToPoint: p) equals: p * 2
 ]
 
 { #category : #tests }
 Jun3dTransformationTest >> testAsArray [
 	| t |
-	t := (Jun3dTransformation translate: 2 _ , -3 _ , 4)
+	t := (Jun3dTransformation translate: 2 ,, -3 ,, 4)
 		product: (Jun3dTransformation rotate: 30 asDegrees).
-	self
-		assert: (t asArray in: [ :array | Jun3dTransformation fromArray: array ])
-		equals: t
+	self assert: (t asArray in: [ :array | Jun3dTransformation fromArray: array ]) equals: t
 ]
 
 { #category : #tests }
 Jun3dTransformationTest >> testAsTranslation [
 	| translation transformation |
-	translation := 2 _ , -3 _ , 4.
+	translation := 2 ,, -3 ,, 4.
 	transformation := Jun3dTransformation translate: translation.
 	self assert: transformation asTranslation equals: translation
 ]
@@ -58,19 +55,19 @@ Jun3dTransformationTest >> testEquals [
 { #category : #tests }
 Jun3dTransformationTest >> testFromOriginXAxisYAxisZAxis [
 	| o x y z t |
-	o := 0 _ , 0 _ , 20.
-	x := 1 _ , 0 _ , 0.
-	y := 0 _ , 1 _ , 0.
-	z := 0 _ , 0 _ , 1.
+	o := 0 ,, 0 ,, 20.
+	x := 1 ,, 0 ,, 0.
+	y := 0 ,, 1 ,, 0.
+	z := 0 ,, 0 ,, 1.
 	t := Jun3dTransformation
 		fromOrigin: o
 		xAxis: x
 		yAxis: y
 		zAxis: z.
-	self assert: (o transform: t) equals: 0 _ , 0 _ , 0.
-	self assert: (x + o transform: t) equals: 1 _ , 0 _ , 0.
-	self assert: (y + o transform: t) equals: 0 _ , 1 _ , 0.
-	self assert: (z + o transform: t) equals: 0 _ , 0 _ , 1
+	self assert: (o transform: t) equals: 0 ,, 0 ,, 0.
+	self assert: (x + o transform: t) equals: 1 ,, 0 ,, 0.
+	self assert: (y + o transform: t) equals: 0 ,, 1 ,, 0.
+	self assert: (z + o transform: t) equals: 0 ,, 0 ,, 1
 ]
 
 { #category : #tests }
@@ -86,9 +83,9 @@ Jun3dTransformationTest >> testIs3d [
 { #category : #tests }
 Jun3dTransformationTest >> testProduct [
 	| t1 t2 p |
-	t1 := Jun3dTransformation translate: 2 _ , -3 _ , 4.
+	t1 := Jun3dTransformation translate: 2 ,, -3 ,, 4.
 	t2 := Jun3dTransformation rotate: 30 asDegrees.
-	p := 13 _ , 17 _ , 19.
+	p := 13 ,, 17 ,, 19.
 	self
 		assert: ((t1 product: t2) in: [ :t | p transform: t ])
 		equals: ((p transform: t1) transform: t2)
@@ -114,9 +111,9 @@ Jun3dTransformationTest >> testSolveLinearEquation [
 { #category : #tests }
 Jun3dTransformationTest >> testToOriginXAxisYAxisZAxis [
 	| o vx vy vz t |
-	o := 1 _ , 2.
-	vx := 2 _ , 3 _ , 4.
-	vy := -3 _ , 2 _ , 0.
+	o := 1 ,, 2.
+	vx := 2 ,, 3 ,, 4.
+	vy := -3 ,, 2 ,, 0.
 	vz := vx product: vy.
 	vy := vz product: vx.
 	t := Jun3dTransformation
@@ -124,9 +121,7 @@ Jun3dTransformationTest >> testToOriginXAxisYAxisZAxis [
 		xAxis: vx
 		yAxis: vy
 		zAxis: vz.
-	self
-		assert: (4 _ , -5 _ , 6 transform: t)
-		equals: vx * 4 + (vy * -5) + (vz * 6) + o
+	self assert: (4 ,, -5 ,, 6 transform: t) equals: vx * 4 + (vy * -5) + (vz * 6) + o
 ]
 
 { #category : #tests }
@@ -135,11 +130,11 @@ Jun3dTransformationTest >> testUnity [
 
 	| unity |
 	unity := Jun3dTransformation unity.
-	self assert: (0 _ , 0 _ , 0 transform: unity) equals: 0 _ , 0 _ , 0.
-	self assert: (1 _ , 0 _ , 0 transform: unity) equals: 1 _ , 0 _ , 0.
-	self assert: (0 _ , 1 _ , 0 transform: unity) equals: 0 _ , 1 _ , 0.
-	self assert: (0 _ , 0 _ , 1 transform: unity) equals: 0 _ , 0 _ , 1.
-	self assert: (1 _ , 1 _ , 1 transform: unity) equals: 1 _ , 1 _ , 1
+	self assert: (0 ,, 0 ,, 0 transform: unity) equals: 0 ,, 0 ,, 0.
+	self assert: (1 ,, 0 ,, 0 transform: unity) equals: 1 ,, 0 ,, 0.
+	self assert: (0 ,, 1 ,, 0 transform: unity) equals: 0 ,, 1 ,, 0.
+	self assert: (0 ,, 0 ,, 1 transform: unity) equals: 0 ,, 0 ,, 1.
+	self assert: (1 ,, 1 ,, 1 transform: unity) equals: 1 ,, 1 ,, 1
 ]
 
 { #category : #tests }
@@ -148,9 +143,9 @@ Jun3dTransformationTest >> testZero [
 
 	| zero |
 	zero := Jun3dTransformation zero.
-	self assert: (0 _ , 0 _ , 0 transform: zero) equals: 0 _ , 0 _ , 0.
-	self assert: (1 _ , 0 _ , 0 transform: zero) equals: 0 _ , 0 _ , 0.
-	self assert: (0 _ , 1 _ , 0 transform: zero) equals: 0 _ , 0 _ , 0.
-	self assert: (0 _ , 0 _ , 1 transform: zero) equals: 0 _ , 0 _ , 0.
-	self assert: (1 _ , 1 _ , 1 transform: zero) equals: 0 _ , 0 _ , 0
+	self assert: (0 ,, 0 ,, 0 transform: zero) equals: 0 ,, 0 ,, 0.
+	self assert: (1 ,, 0 ,, 0 transform: zero) equals: 0 ,, 0 ,, 0.
+	self assert: (0 ,, 1 ,, 0 transform: zero) equals: 0 ,, 0 ,, 0.
+	self assert: (0 ,, 0 ,, 1 transform: zero) equals: 0 ,, 0 ,, 0.
+	self assert: (1 ,, 1 ,, 1 transform: zero) equals: 0 ,, 0 ,, 0
 ]

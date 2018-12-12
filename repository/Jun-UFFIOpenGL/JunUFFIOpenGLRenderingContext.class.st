@@ -49,39 +49,39 @@ JunUFFIOpenGLRenderingContext class >> example1 [
 	form := Form extent: 500 @ 500 depth: 32.
 	rc := JunUFFIOpenGLRenderingContext on: form.
 	floorPoints := Array
-		with: 0 _, 0 _, 1
-		with: 1 _, 0 _, 1
-		with: 1 _, 1 _, 1
-		with: 0 _, 1 _, 1.
+		with: 0 ,, 0 ,, 1
+		with: 1 ,, 0 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 1.
 	ceilPoints := Array
-		with: 0 _, 1 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 0 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 0 ,, 0 ,, 0.
 	leftPoints := Array
-		with: 1 _, 0 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 1 _, 1
-		with: 1 _, 0 _, 1.
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 0 ,, 1.
 	rightPoints := Array
-		with: 0 _, 0 _, 1
-		with: 0 _, 1 _, 1
-		with: 0 _, 1 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 0 ,, 1
+		with: 0 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 0
+		with: 0 ,, 0 ,, 0.
 	nearPoints := Array
-		with: 0 _, 1 _, 1
-		with: 1 _, 1 _, 1
-		with: 1 _, 1 _, 0
-		with: 0 _, 1 _, 0.
+		with: 0 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 0
+		with: 0 ,, 1 ,, 0.
 	farPoints := Array
-		with: 0 _, 0 _, 0
-		with: 1 _, 0 _, 0
-		with: 1 _, 0 _, 1
-		with: 0 _, 0 _, 1.
+		with: 0 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 1
+		with: 0 ,, 0 ,, 1.
 	projection := JunParallelProjection
-		eyePoint: 10 _, 10 _, 10
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: 10 ,, 10 ,, 10
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		height: 3.0
 		near: 0.0001
 		far: 100.0.
@@ -114,56 +114,56 @@ JunUFFIOpenGLRenderingContext class >> example2 [
 	form := Form extent: 500 @ 500 depth: 32.
 	rc := JunUFFIOpenGLRenderingContext on: form.
 	xarrow := Array
-		with: 0 _, 0 _, 0
-		with: 1.5 _, 0 _, 0
-		with: 1.4 _, 0.01 _, 0.01
-		with: 1.4 _, -0.01 _, -0.01.
+		with: 0 ,, 0 ,, 0
+		with: 1.5 ,, 0 ,, 0
+		with: 1.4 ,, 0.01 ,, 0.01
+		with: 1.4 ,, -0.01 ,, -0.01.
 	yarrow := Array
-		with: 0 _, 0 _, 0
-		with: 0 _, 1.5 _, 0
-		with: 0.01 _, 1.4 _, 0.01
-		with: -0.01 _, 1.4 _, -0.01.
+		with: 0 ,, 0 ,, 0
+		with: 0 ,, 1.5 ,, 0
+		with: 0.01 ,, 1.4 ,, 0.01
+		with: -0.01 ,, 1.4 ,, -0.01.
 	zarrow := Array
-		with: 0 _, 0 _, 0
-		with: 0 _, 0 _, 1.5
-		with: 0.01 _, 0.01 _, 1.4
-		with: -0.01 _, -0.01 _, 1.4.
+		with: 0 ,, 0 ,, 0
+		with: 0 ,, 0 ,, 1.5
+		with: 0.01 ,, 0.01 ,, 1.4
+		with: -0.01 ,, -0.01 ,, 1.4.
 	floorPoints := Array
-		with: 0 _, 0 _, 1
-		with: 1 _, 0 _, 1
-		with: 1 _, 1 _, 1
-		with: 0 _, 1 _, 1.
+		with: 0 ,, 0 ,, 1
+		with: 1 ,, 0 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 1.
 	ceilPoints := Array
-		with: 0 _, 1 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 0 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 0 ,, 0 ,, 0.
 	leftPoints := Array
-		with: 1 _, 0 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 1 _, 1
-		with: 1 _, 0 _, 1.
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 0 ,, 1.
 	rightPoints := Array
-		with: 0 _, 0 _, 1
-		with: 0 _, 1 _, 1
-		with: 0 _, 1 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 0 ,, 1
+		with: 0 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 0
+		with: 0 ,, 0 ,, 0.
 	nearPoints := Array
-		with: 0 _, 1 _, 1
-		with: 1 _, 1 _, 1
-		with: 1 _, 1 _, 0
-		with: 0 _, 1 _, 0.
+		with: 0 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 0
+		with: 0 ,, 1 ,, 0.
 	farPoints := Array
-		with: 0 _, 0 _, 0
-		with: 1 _, 0 _, 0
-		with: 1 _, 0 _, 1
-		with: 0 _, 0 _, 1.
+		with: 0 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 1
+		with: 0 ,, 0 ,, 1.
 	rc disableCullface.
 	angle := 0 asDegrees.
 	projection := JunPerspectiveProjection
-		eyePoint: 3 _, 3 _, 3
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: 3 ,, 3 ,, 3
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -171,7 +171,7 @@ JunUFFIOpenGLRenderingContext class >> example2 [
 	rc enableCullface.
 	rc clear.
 	rc ambientLight: Color darkGray.
-	rc lightIndex: 0 parallel: 1 _, 2 _, 3 color: Color white.
+	rc lightIndex: 0 parallel: 1 ,, 2 ,, 3 color: Color white.
 	rc color: Color red.
 	rc displayPolygon: floorPoints.
 	rc color: Color blue.
@@ -196,9 +196,9 @@ JunUFFIOpenGLRenderingContext class >> example3 [
 	form := Form extent: 500 @ 500 depth: 32.
 	rc := JunUFFIOpenGLRenderingContext on: form.
 	projection := JunPerspectiveProjection
-		eyePoint: 10 _, 10 _, 15
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 1 _, 0
+		eyePoint: 10 ,, 10 ,, 15
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 1 ,, 0
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -206,7 +206,7 @@ JunUFFIOpenGLRenderingContext class >> example3 [
 	rc enableCullface.
 	rc clear.
 	rc ambientLight: Color darkGray.
-	rc lightIndex: 0 parallel: (10 _, 10 _, 15) negated color: Color white.
+	rc lightIndex: 0 parallel: (10 ,, 10 ,, 15) negated color: Color white.
 	Jun3dDisplayObject benzene renderOn: rc.
 	rc flush.
 	(Delay forMilliseconds: 100) wait.
@@ -230,9 +230,9 @@ JunUFFIOpenGLRenderingContext class >> example4 [
 	rc enableCullface.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle) _, angle cos) unitVector * 15
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle) ,, angle cos) unitVector * 15
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -269,9 +269,9 @@ JunUFFIOpenGLRenderingContext class >> example5 [
 	rc enableCullface.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle) _, angle cos) unitVector * 15
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle) ,, angle cos) unitVector * 15
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -296,9 +296,22 @@ JunUFFIOpenGLRenderingContext class >> example6 [
 	"JunUFFIOpenGLRenderingContext example6"
 
 	| square rc morph angle process |
-	square := Jun3dDisplayPolygon points: (Array with: -2_, -2_, 0 with: 2_, -2_, 0 with: 2_, 2_, 0 with: -2_, 2_, 0).
-	square setTexture: (JunTexture on: JunSystem logo ) points: (Array with: 0_, 1 with: 1_, 1 with: 1_, 0 with: 0_, 0).
-	rc := (Form extent: 500@500 depth: 32) renderingContext.
+	square := Jun3dDisplayPolygon
+		points:
+			(Array
+				with: -2 ,, -2 ,, 0
+				with: 2 ,, -2 ,, 0
+				with: 2 ,, 2 ,, 0
+				with: -2 ,, 2 ,, 0).
+	square
+		setTexture: (JunTexture on: JunSystem logo)
+		points:
+			(Array
+				with: 0 ,, 1
+				with: 1 ,, 1
+				with: 1 ,, 0
+				with: 0 ,, 0).
+	rc := (Form extent: 500 @ 500 depth: 32) renderingContext.
 	rc backgroundColor: (Color white alpha: 0.0).
 	morph := rc form asMorph.
 	morph borderColor: Color gray.
@@ -307,12 +320,11 @@ JunUFFIOpenGLRenderingContext class >> example6 [
 	morph openInWorld.
 	angle := 0 asDegrees.
 	rc disableCullface.
-	process := [ 
-	[ | projection |
+	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle)_, angle cos) unitVector * 15
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0_, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle) ,, angle cos) unitVector * 15
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -320,16 +332,15 @@ JunUFFIOpenGLRenderingContext class >> example6 [
 	rc projection: projection.
 	rc clear.
 	rc ambientLight: Color gray.
-	rc lightIndex: 0 parallel: (projection eyePoint) negated color: Color gray.
+	rc lightIndex: 0 parallel: projection eyePoint negated color: Color gray.
 	square renderOn: rc.
 	rc flush.
 	morph changed.
-	(Delay forMilliseconds: 100) wait] repeat] forkAt: Processor userBackgroundPriority.
+	(Delay forMilliseconds: 100) wait ] repeat ] forkAt: Processor userBackgroundPriority.
 	morph
 		on: #click
 		send: #value
-		to: [ 
-			process terminate.
+		to: [ process terminate.
 			morph delete ]
 ]
 

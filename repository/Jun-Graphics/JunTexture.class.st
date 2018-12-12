@@ -22,18 +22,18 @@ JunTexture class >> example1 [
 	square := Jun3dDisplayPolygon
 		points:
 			(Array
-				with: -2 _, 0 _, -2
-				with: 2 _, 0 _, -2
-				with: 2 _, 0 _, 2
-				with: -2 _, 0 _, 2).
+				with: -2 ,, 0 ,, -2
+				with: 2 ,, 0 ,, -2
+				with: 2 ,, 0 ,, 2
+				with: -2 ,, 0 ,, 2).
 	square
 		setTexture: (JunTexture on: JunSystem logo)
 		points:
 			(Array
-				with: 0 _, 1
-				with: 1 _, 1
-				with: 1 _, 0
-				with: 0 _, 0).
+				with: 0 ,, 1
+				with: 1 ,, 1
+				with: 1 ,, 0
+				with: 0 ,, 0).
 	rc := (Form extent: 500 @ 500 depth: 32) renderingContext.
 	rc backgroundColor: (Color white alpha: 0.0).
 	morph := rc form asMorph.
@@ -46,9 +46,9 @@ JunTexture class >> example1 [
 	rc disableCullface.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) _, angle2 cos) unitVector * 10
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) ,, angle2 cos) unitVector * 10
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -77,20 +77,20 @@ JunTexture class >> example2 [
 	square := Jun3dDisplayPolygon
 		points:
 			(Array
-				with: -2 _, 0 _, -2
-				with: 2 _, 0 _, -2
-				with: 2 _, 0 _, 2
-				with: -2 _, 0 _, 2).
+				with: -2 ,, 0 ,, -2
+				with: 2 ,, 0 ,, -2
+				with: 2 ,, 0 ,, 2
+				with: -2 ,, 0 ,, 2).
 	square
 		setTexture:
 			(JunTexture
 				on: ((Form fromDisplay: (0 @ 0 extent: World extent)) scaledToSize: 500 @ 500))
 		points:
 			(Array
-				with: 0 _, 1
-				with: 1 _, 1
-				with: 1 _, 0
-				with: 0 _, 0).
+				with: 0 ,, 1
+				with: 1 ,, 1
+				with: 1 ,, 0
+				with: 0 ,, 0).
 	form := Form extent: 500 @ 500 depth: 32.
 	rc := form renderingContext.
 	rc backgroundColor: (Color white alpha: 0.0).
@@ -104,9 +104,9 @@ JunTexture class >> example2 [
 	rc disableCullface.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) _, angle2 cos) unitVector * 10
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) ,, angle2 cos) unitVector * 10
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -149,10 +149,10 @@ JunTexture class >> example3 [
 				setTexture: texture
 				points:
 					(Array
-						with: longitude / 360.0 _, (latitude / 180.0)
-						with: (longitude + 10) / 360.0 _, (latitude / 180.0)
-						with: (longitude + 10) / 360.0 _, ((latitude + 10) / 180.0)
-						with: longitude / 360.0 _, ((latitude + 10) / 180.0)).
+						with: longitude / 360.0 ,, (latitude / 180.0)
+						with: (longitude + 10) / 360.0 ,, (latitude / 180.0)
+						with: (longitude + 10) / 360.0 ,, ((latitude + 10) / 180.0)
+						with: longitude / 360.0 ,, ((latitude + 10) / 180.0)).
 			sphere add: polygon ] ].
 	form := Form extent: 500 @ 500 depth: 32.
 	rc := form renderingContext.
@@ -167,9 +167,9 @@ JunTexture class >> example3 [
 	rc disableCullface.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) _, angle2 cos) unitVector * 10
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) ,, angle2 cos) unitVector * 10
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -209,9 +209,9 @@ JunTexture class >> example4 [
 	rc disableCullface.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) _, angle2 cos) unitVector * dist
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) ,, angle2 cos) unitVector * dist
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -243,7 +243,7 @@ JunTexture class >> example5 [
 	earth := earth transform: (Jun3dTransformation scale: 6.371).
 	moon := Jun3dDisplayObject moon: 10.
 	moon := moon transform: (Jun3dTransformation scale: 1.737).
-	moon := moon transform: (Jun3dTransformation translate: 337.862 _ , 0 _ , 184.591).
+	moon := moon transform: (Jun3dTransformation translate: 337.862 ,, 0 ,, 184.591).
 	spin := Jun3dTransformation rotateZ: 1 asDegrees.
 	dist := 800.0.
 	rc := (Form extent: World extent depth: 32) renderingContext.
@@ -258,9 +258,9 @@ JunTexture class >> example5 [
 		enableLighting.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: (0.8788091044555351 _ , 0.010043532622348972 _ , 0.4770677995615762) * dist
-		sightPoint: 0 _ , 0 _ , 0
-		upVector: 0 _ , 0 _ , 1
+		eyePoint: (0.8788091044555351 ,, 0.010043532622348972 ,, 0.4770677995615762) * dist
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 20 asDegrees
 		near: 0.1
 		far: 10000.0.
@@ -301,9 +301,9 @@ JunTexture class >> example6 [
 	rc disableCullface.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) _, angle2 cos) unitVector * dist
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle1) ,, angle2 cos) unitVector * dist
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.

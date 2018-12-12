@@ -167,11 +167,6 @@ JunPoint >> \\ aNumber [
 	^ self - (self // aNumber * aNumber)
 ]
 
-{ #category : #converting }
-JunPoint >> _ [
-	^ self
-]
-
 { #category : #arithmetic }
 JunPoint >> abs [
 	^ self negative

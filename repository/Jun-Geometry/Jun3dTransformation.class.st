@@ -149,15 +149,18 @@ Jun3dTransformation class >> example2 [
 	"Jun3dTransformation example2."
 
 	| fromPoint toPoint tT form |
-	fromPoint := 50 _, 100 _, 0.
-	toPoint := 100 _, 50 _, 0.
-	tT := Jun3dTransformation translate: 100 _, 100 _, 0.
+	fromPoint := 50 ,, 100 ,, 0.
+	toPoint := 100 ,, 50 ,, 0.
+	tT := Jun3dTransformation translate: 100 ,, 100 ,, 0.
 	form := Form extent: 250 @ 250 depth: 32.
 	form getCanvas
 		in: [ :canvas | 
 			canvas fillColor: Color white.
 			canvas line: fromPoint asPoint to: toPoint asPoint color: Color blue.
-			canvas line: (fromPoint transform: tT) asPoint to: (toPoint transform: tT) asPoint color: Color red.
+			canvas
+				line: (fromPoint transform: tT) asPoint
+				to: (toPoint transform: tT) asPoint
+				color: Color red.
 			canvas flush ].
 	form asMorph openInWindow.
 	^ tT
@@ -168,15 +171,18 @@ Jun3dTransformation class >> example3 [
 	"Jun3dTransformation example3."
 
 	| fromPoint toPoint tS form |
-	fromPoint := 50 _, 100 _, 0.
-	toPoint := 100 _, 50 _, 0.
-	tS := Jun3dTransformation scale: 2 _, 2 _, 0.
+	fromPoint := 50 ,, 100 ,, 0.
+	toPoint := 100 ,, 50 ,, 0.
+	tS := Jun3dTransformation scale: 2 ,, 2 ,, 0.
 	form := Form extent: 250 @ 250 depth: 32.
 	form getCanvas
 		in: [ :canvas | 
 			canvas fillColor: Color white.
 			canvas line: fromPoint asPoint to: toPoint asPoint color: Color blue.
-			canvas line: (fromPoint transform: tS) asPoint to: (toPoint transform: tS) asPoint color: Color red.
+			canvas
+				line: (fromPoint transform: tS) asPoint
+				to: (toPoint transform: tS) asPoint
+				color: Color red.
 			canvas flush ].
 	form asMorph openInWindow.
 	^ tS
@@ -187,15 +193,18 @@ Jun3dTransformation class >> example4 [
 	"Jun3dTransformation example4."
 
 	| fromPoint toPoint tR form |
-	fromPoint := 50 _, 100 _, 0.
-	toPoint := 100 _, 50 _, 0.
+	fromPoint := 50 ,, 100 ,, 0.
+	toPoint := 100 ,, 50 ,, 0.
 	tR := Jun3dTransformation rotate: (JunAngle fromDeg: 20).
 	form := Form extent: 250 @ 250 depth: 32.
 	form getCanvas
 		in: [ :canvas | 
 			canvas fillColor: Color white.
 			canvas line: fromPoint asPoint to: toPoint asPoint color: Color blue.
-			canvas line: (fromPoint transform: tR) asPoint to: (toPoint transform: tR) asPoint color: Color red.
+			canvas
+				line: (fromPoint transform: tR) asPoint
+				to: (toPoint transform: tR) asPoint
+				color: Color red.
 			canvas flush ].
 	form asMorph openInWindow.
 	^ tR
@@ -206,11 +215,11 @@ Jun3dTransformation class >> example5 [
 	"Jun3dTransformation example5."
 
 	| fromPoint toPoint aLine form |
-	fromPoint := 50 _, 100 _, 0.
-	toPoint := 100 _, 50 _, 0.
+	fromPoint := 50 ,, 100 ,, 0.
+	toPoint := 100 ,, 50 ,, 0.
 	aLine := Array
 		with: (fromPoint center: toPoint)
-		with: ((fromPoint center: toPoint) transform: (Jun3dTransformation translate: 0 _, 0 _, 100)).
+		with: ((fromPoint center: toPoint) transform: (Jun3dTransformation translate: 0 ,, 0 ,, 100)).
 	form := Form extent: 250 @ 250 depth: 32.
 	form getCanvas
 		in: [ :canvas | 
@@ -219,7 +228,10 @@ Jun3dTransformation class >> example5 [
 			10 to: 170 by: 10 do: [ :angle | 
 				| tR |
 				tR := Jun3dTransformation rotate: (JunAngle fromDeg: angle) around: aLine.
-				canvas line: (fromPoint transform: tR) asPoint to: (toPoint transform: tR) asPoint color: Color red ].
+				canvas
+					line: (fromPoint transform: tR) asPoint
+					to: (toPoint transform: tR) asPoint
+					color: Color red ].
 			canvas flush ].
 	form asMorph openInWindow
 ]

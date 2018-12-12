@@ -252,15 +252,18 @@ JunCanvasRenderingContext >> parallelProjection: aJunParallelProjection [
 JunCanvasRenderingContext >> perspectiveProjection: aJunPerspectiveProjection [
 	| depth xyScale |
 	self setProjection: aJunPerspectiveProjection copy.
-	depth := aJunPerspectiveProjection sightPoint distance: aJunPerspectiveProjection eyePoint.
+	depth := aJunPerspectiveProjection sightPoint
+		distance: aJunPerspectiveProjection eyePoint.
 	xyScale := 2.0 / aJunPerspectiveProjection regularHeight.
 	projectionTransformation := ((Jun3dTransformation
 		fromOrigin: aJunPerspectiveProjection sightPoint
 		xAxis: aJunPerspectiveProjection unitRightVector
 		yAxis: aJunPerspectiveProjection unitUpVector
-		zAxis: aJunPerspectiveProjection unitSightVector negated) product: (Jun3dTransformation perspective: 0 _, 0 , depth))
-		product: (Jun3dTransformation scale: xyScale _, xyScale , -1).
-	projectionTransformation := projectionTransformation product: (Jun3dTransformation translate: 0 _, 0 , depth).
+		zAxis: aJunPerspectiveProjection unitSightVector negated)
+		product: (Jun3dTransformation perspective: 0 ,, 0 ,, depth))
+		product: (Jun3dTransformation scale: xyScale ,, xyScale ,, -1).
+	projectionTransformation := projectionTransformation
+		product: (Jun3dTransformation translate: 0 ,, 0 ,, depth).
 	totalTransformation := nil.
 	projection := aJunPerspectiveProjection copy
 ]
@@ -271,11 +274,8 @@ JunCanvasRenderingContext >> setCanvas: aCanvas viewport: aRectangle [
 	viewport := aRectangle.
 	(viewport width max: viewport height) asFloat / 2.0
 		in: [ :scale | 
-			viewportTransformation := (Jun3dTransformation
-				scale: scale _ , scale negated , 1)
-				product:
-					(Jun3dTransformation
-						translate: (Jun2dPoint fromPoint: aRectangle center) , 0) ]
+			viewportTransformation := (Jun3dTransformation scale: scale ,, scale negated ,, 1)
+				product: (Jun3dTransformation translate: (Jun2dPoint fromPoint: aRectangle center) ,, 0) ]
 ]
 
 { #category : #private }

@@ -37,7 +37,7 @@ JunProjection class >> default [
 
 { #category : #defaults }
 JunProjection class >> defaultEyePoint [
-	^ 30 _, 30 , 30
+	^ 30 ,, 30 ,, 30
 ]
 
 { #category : #defaults }
@@ -77,7 +77,7 @@ JunProjection class >> defaultSightPoint [
 
 { #category : #defaults }
 JunProjection class >> defaultUpVector [
-	^ 0 _, 0 , 1
+	^ 0 ,, 0 ,, 1
 ]
 
 { #category : #'instance creation' }
@@ -157,7 +157,8 @@ JunProjection >> asPerspectiveProjection [
 JunProjection >> asPickingProjectionAt: aPoint [
 	| pickingCenter pickingZoomHeight projection |
 	pickingCenter := self translateTo3dPointFromPoint: aPoint.
-	pickingZoomHeight := (pickingCenter - (self translateTo3dPointFromPoint: aPoint + (0 _, -0.01))) length.
+	pickingZoomHeight := (pickingCenter
+		- (self translateTo3dPointFromPoint: aPoint + (0 ,, -0.01))) length.
 	projection := self copy.
 	projection sightPoint: pickingCenter.
 	self isParallel

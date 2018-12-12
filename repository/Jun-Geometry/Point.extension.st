@@ -17,8 +17,8 @@ Point >> + arg [
 ]
 
 { #category : #'*Jun-Geometry-Basic' }
-Point >> , aNumber [
-	^ Jun3dPoint x: self x y: self y z: aNumber
+Point >> ,, aNumber [
+	^ Jun3dPoint x: x y: y z: aNumber
 ]
 
 { #category : #'*Jun-Geometry-Basic' }

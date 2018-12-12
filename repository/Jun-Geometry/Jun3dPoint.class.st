@@ -32,7 +32,7 @@ Jun3dPoint class >> example1 [
 	"Jun3dPoint example1."
 
 	| aPoint |
-	aPoint := 1 _, 0.5 _, 0.25.
+	aPoint := 1 ,, 0.5 ,, 0.25.
 	Transcript
 		cr;
 		show: aPoint printString.
@@ -50,30 +50,32 @@ Jun3dPoint class >> example2 [
 
 	| aPolyline1 aPolyline2 form viewPoint tS tP tT tPT tSPT |
 	aPolyline1 := OrderedCollection new.
-	aPolyline1 add: 0 _, 0 _, 50.
-	aPolyline1 add: 50 _, 0 _, 50.
-	aPolyline1 add: 50 _, 50 _, 50.
-	aPolyline1 add: 0 _, 50 _, 50.
-	aPolyline1 add: 0 _, 0 _, 50.
+	aPolyline1 add: 0 ,, 0 ,, 50.
+	aPolyline1 add: 50 ,, 0 ,, 50.
+	aPolyline1 add: 50 ,, 50 ,, 50.
+	aPolyline1 add: 0 ,, 50 ,, 50.
+	aPolyline1 add: 0 ,, 0 ,, 50.
 	aPolyline2 := OrderedCollection new.
-	aPolyline2 add: 0 _, 0 _, 0.
-	aPolyline2 add: 50 _, 0 _, 0.
-	aPolyline2 add: 50 _, 50 _, 0.
-	aPolyline2 add: 0 _, 50 _, 0.
-	aPolyline2 add: 0 _, 0 _, 0.
+	aPolyline2 add: 0 ,, 0 ,, 0.
+	aPolyline2 add: 50 ,, 0 ,, 0.
+	aPolyline2 add: 50 ,, 50 ,, 0.
+	aPolyline2 add: 0 ,, 50 ,, 0.
+	aPolyline2 add: 0 ,, 0 ,, 0.
 	form := Form extent: 250 @ 250 depth: 32.
 	form getCanvas
 		in: [ :canvas | 
 			| polylineBlock |
-			viewPoint := 25 _, 25 _, 150.
-			tS := Jun3dTransformation scale: 1.5 _, 1.5 _, 1.5.
+			viewPoint := 25 ,, 25 ,, 150.
+			tS := Jun3dTransformation scale: 1.5 ,, 1.5 ,, 1.5.
 			tP := Jun3dTransformation perspective: viewPoint.
 			tT := Jun3dTransformation translate: (Jun3dPoint fromPoint: form extent // 2).
 			tPT := tP product: tT.
 			tSPT := (tS product: tP) product: tT.
 			canvas fillColor: Color white.
 			polylineBlock := [ :points :color | 1 to: points size - 1 do: [ :i | canvas line: (points at: i) to: (points at: i + 1) color: color ] ].
-			polylineBlock value: (aPolyline2 collect: [ :p | (p transform: tPT) asPoint ]) value: Color gray.
+			polylineBlock
+				value: (aPolyline2 collect: [ :p | (p transform: tPT) asPoint ])
+				value: Color gray.
 			aPolyline1
 				with: aPolyline2
 				do: [ :p1 :p2 | 
@@ -81,8 +83,12 @@ Jun3dPoint class >> example2 [
 					from := (p1 transform: tPT) asPoint.
 					to := (p2 transform: tPT) asPoint.
 					canvas line: from to: to color: Color red ].
-			polylineBlock value: (aPolyline1 collect: [ :p | (p transform: tPT) asPoint ]) value: Color black.
-			polylineBlock value: (aPolyline2 collect: [ :p | (p transform: tSPT) asPoint ]) value: Color gray.
+			polylineBlock
+				value: (aPolyline1 collect: [ :p | (p transform: tPT) asPoint ])
+				value: Color black.
+			polylineBlock
+				value: (aPolyline2 collect: [ :p | (p transform: tSPT) asPoint ])
+				value: Color gray.
 			aPolyline1
 				with: aPolyline2
 				do: [ :p1 :p2 | 
@@ -90,7 +96,9 @@ Jun3dPoint class >> example2 [
 					from := (p1 transform: tSPT) asPoint.
 					to := (p2 transform: tSPT) asPoint.
 					canvas line: from to: to color: Color red ].
-			polylineBlock value: (aPolyline1 collect: [ :p | (p transform: tSPT) asPoint ]) value: Color black.
+			polylineBlock
+				value: (aPolyline1 collect: [ :p | (p transform: tSPT) asPoint ])
+				value: Color black.
 			canvas flush ].
 	form asMorph openInWindow
 ]
@@ -101,22 +109,22 @@ Jun3dPoint class >> example3 [
 
 	| aPolyline1 aPolyline2 form viewPoint tR tP tT tPT tRPT |
 	aPolyline1 := OrderedCollection new.
-	aPolyline1 add: 0 _, 0 _, 50.
-	aPolyline1 add: 50 _, 0 _, 50.
-	aPolyline1 add: 50 _, 50 _, 50.
-	aPolyline1 add: 0 _, 50 _, 50.
-	aPolyline1 add: 0 _, 0 _, 50.
+	aPolyline1 add: 0 ,, 0 ,, 50.
+	aPolyline1 add: 50 ,, 0 ,, 50.
+	aPolyline1 add: 50 ,, 50 ,, 50.
+	aPolyline1 add: 0 ,, 50 ,, 50.
+	aPolyline1 add: 0 ,, 0 ,, 50.
 	aPolyline2 := OrderedCollection new.
-	aPolyline2 add: 0 _, 0 _, 0.
-	aPolyline2 add: 50 _, 0 _, 0.
-	aPolyline2 add: 50 _, 50 _, 0.
-	aPolyline2 add: 0 _, 50 _, 0.
-	aPolyline2 add: 0 _, 0 _, 0.
+	aPolyline2 add: 0 ,, 0 ,, 0.
+	aPolyline2 add: 50 ,, 0 ,, 0.
+	aPolyline2 add: 50 ,, 50 ,, 0.
+	aPolyline2 add: 0 ,, 50 ,, 0.
+	aPolyline2 add: 0 ,, 0 ,, 0.
 	form := Form extent: 250 @ 250 depth: 32.
 	form getCanvas
 		in: [ :canvas | 
 			| polylineBlock |
-			viewPoint := 25 _, 25 _, 150.
+			viewPoint := 25 ,, 25 ,, 150.
 			tR := Jun3dTransformation rotate: (JunAngle fromDeg: 30).
 			tP := Jun3dTransformation perspective: viewPoint.
 			tT := Jun3dTransformation translate: (Jun3dPoint fromPoint: form extent // 2).
@@ -124,7 +132,9 @@ Jun3dPoint class >> example3 [
 			tRPT := (tR product: tP) product: tT.
 			canvas fillColor: Color white.
 			polylineBlock := [ :points :color | 1 to: points size - 1 do: [ :i | canvas line: (points at: i) to: (points at: i + 1) color: color ] ].
-			polylineBlock value: (aPolyline2 collect: [ :p | (p transform: tPT) asPoint ]) value: Color gray.
+			polylineBlock
+				value: (aPolyline2 collect: [ :p | (p transform: tPT) asPoint ])
+				value: Color gray.
 			aPolyline1
 				with: aPolyline2
 				do: [ :p1 :p2 | 
@@ -132,8 +142,12 @@ Jun3dPoint class >> example3 [
 					from := (p1 transform: tPT) asPoint.
 					to := (p2 transform: tPT) asPoint.
 					canvas line: from to: to color: Color red ].
-			polylineBlock value: (aPolyline1 collect: [ :p | (p transform: tPT) asPoint ]) value: Color black.
-			polylineBlock value: (aPolyline2 collect: [ :p | (p transform: tRPT) asPoint ]) value: Color gray.
+			polylineBlock
+				value: (aPolyline1 collect: [ :p | (p transform: tPT) asPoint ])
+				value: Color black.
+			polylineBlock
+				value: (aPolyline2 collect: [ :p | (p transform: tRPT) asPoint ])
+				value: Color gray.
 			aPolyline1
 				with: aPolyline2
 				do: [ :p1 :p2 | 
@@ -141,7 +155,9 @@ Jun3dPoint class >> example3 [
 					from := (p1 transform: tRPT) asPoint.
 					to := (p2 transform: tRPT) asPoint.
 					canvas line: from to: to color: Color red ].
-			polylineBlock value: (aPolyline1 collect: [ :p | (p transform: tRPT) asPoint ]) value: Color black.
+			polylineBlock
+				value: (aPolyline1 collect: [ :p | (p transform: tRPT) asPoint ])
+				value: Color black.
 			canvas flush ].
 	form asMorph openInWindow
 ]
@@ -177,7 +193,7 @@ Jun3dPoint class >> neighborhood124Points: aPoint [
 		-2 to: 2 do: [ :y | 
 			-2 to: 2 do: [ :x | 
 				(x = 0 and: [ y = 0 and: [ z = 0 ] ])
-					ifFalse: [ aCollection add: aPoint + (x _, y _, z) ] ] ] ].
+					ifFalse: [ aCollection add: aPoint + (x ,, y ,, z) ] ] ] ].
 	^ aCollection
 ]
 
@@ -187,32 +203,32 @@ Jun3dPoint class >> neighborhood26Points: aPoint [
 
 	| aCollection |
 	aCollection := OrderedCollection new: 9 + 8 + 9.
-	aCollection add: aPoint + (0 _, 0 _, 1).
-	aCollection add: aPoint + (1 _, 0 _, 1).
-	aCollection add: aPoint + (1 _, 1 _, 1).
-	aCollection add: aPoint + (0 _, 1 _, 1).
-	aCollection add: aPoint + (-1 _, 1 _, 1).
-	aCollection add: aPoint + (-1 _, 0 _, 1).
-	aCollection add: aPoint + (-1 _, -1 _, 1).
-	aCollection add: aPoint + (0 _, -1 _, 1).
-	aCollection add: aPoint + (1 _, -1 _, 1).
-	aCollection add: aPoint + (1 _, 0 _, 0).
-	aCollection add: aPoint + (1 _, 1 _, 0).
-	aCollection add: aPoint + (0 _, 1 _, 0).
-	aCollection add: aPoint + (-1 _, 1 _, 0).
-	aCollection add: aPoint + (-1 _, 0 _, 0).
-	aCollection add: aPoint + (-1 _, -1 _, 0).
-	aCollection add: aPoint + (0 _, -1 _, 0).
-	aCollection add: aPoint + (1 _, -1 _, 0).
-	aCollection add: aPoint + (1 _, 0 _, -1).
-	aCollection add: aPoint + (1 _, 1 _, -1).
-	aCollection add: aPoint + (0 _, 1 _, -1).
-	aCollection add: aPoint + (-1 _, 1 _, -1).
-	aCollection add: aPoint + (-1 _, 0 _, -1).
-	aCollection add: aPoint + (-1 _, -1 _, -1).
-	aCollection add: aPoint + (0 _, -1 _, -1).
-	aCollection add: aPoint + (1 _, -1 _, -1).
-	aCollection add: aPoint + (0 _, 0 _, -1).
+	aCollection add: aPoint + (0 ,, 0 ,, 1).
+	aCollection add: aPoint + (1 ,, 0 ,, 1).
+	aCollection add: aPoint + (1 ,, 1 ,, 1).
+	aCollection add: aPoint + (0 ,, 1 ,, 1).
+	aCollection add: aPoint + (-1 ,, 1 ,, 1).
+	aCollection add: aPoint + (-1 ,, 0 ,, 1).
+	aCollection add: aPoint + (-1 ,, -1 ,, 1).
+	aCollection add: aPoint + (0 ,, -1 ,, 1).
+	aCollection add: aPoint + (1 ,, -1 ,, 1).
+	aCollection add: aPoint + (1 ,, 0 ,, 0).
+	aCollection add: aPoint + (1 ,, 1 ,, 0).
+	aCollection add: aPoint + (0 ,, 1 ,, 0).
+	aCollection add: aPoint + (-1 ,, 1 ,, 0).
+	aCollection add: aPoint + (-1 ,, 0 ,, 0).
+	aCollection add: aPoint + (-1 ,, -1 ,, 0).
+	aCollection add: aPoint + (0 ,, -1 ,, 0).
+	aCollection add: aPoint + (1 ,, -1 ,, 0).
+	aCollection add: aPoint + (1 ,, 0 ,, -1).
+	aCollection add: aPoint + (1 ,, 1 ,, -1).
+	aCollection add: aPoint + (0 ,, 1 ,, -1).
+	aCollection add: aPoint + (-1 ,, 1 ,, -1).
+	aCollection add: aPoint + (-1 ,, 0 ,, -1).
+	aCollection add: aPoint + (-1 ,, -1 ,, -1).
+	aCollection add: aPoint + (0 ,, -1 ,, -1).
+	aCollection add: aPoint + (1 ,, -1 ,, -1).
+	aCollection add: aPoint + (0 ,, 0 ,, -1).
 	^ aCollection
 ]
 
@@ -222,12 +238,12 @@ Jun3dPoint class >> neighborhood6Points: aPoint [
 
 	| aCollection |
 	aCollection := OrderedCollection new: 6.
-	aCollection add: aPoint + (0 _, 0 _, 1).
-	aCollection add: aPoint + (1 _, 0 _, 0).
-	aCollection add: aPoint + (0 _, 1 _, 0).
-	aCollection add: aPoint + (-1 _, 0 _, 0).
-	aCollection add: aPoint + (0 _, -1 _, 0).
-	aCollection add: aPoint + (0 _, 0 _, -1).
+	aCollection add: aPoint + (0 ,, 0 ,, 1).
+	aCollection add: aPoint + (1 ,, 0 ,, 0).
+	aCollection add: aPoint + (0 ,, 1 ,, 0).
+	aCollection add: aPoint + (-1 ,, 0 ,, 0).
+	aCollection add: aPoint + (0 ,, -1 ,, 0).
+	aCollection add: aPoint + (0 ,, 0 ,, -1).
 	^ aCollection
 ]
 
@@ -332,7 +348,7 @@ Jun3dPoint >> abs [
 
 { #category : #converting }
 Jun3dPoint >> as2dPoint [
-	^ self x _, self y
+	^ self x ,, self y
 ]
 
 { #category : #converting }
@@ -624,8 +640,8 @@ Jun3dPoint >> transformationToAlignVectorWithVector: aJun3dPoint [
 ]
 
 { #category : #transformation }
-Jun3dPoint >> transformationToRotate: anAngle [ 
-	^ Jun3dTransformation rotate: anAngle around: (self to: self + (0 _, 0 , 1))
+Jun3dPoint >> transformationToRotate: anAngle [
+	^ Jun3dTransformation rotate: anAngle around: (self to: self + (0 ,, 0 ,, 1))
 ]
 
 { #category : #'truncation and round off' }

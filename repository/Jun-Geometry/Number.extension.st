@@ -1,8 +1,8 @@
 Extension { #name : #Number }
 
 { #category : #'*Jun-Geometry-Basic' }
-Number >> _ [
-	^ Jun1dPoint x: self
+Number >> ,, aNumber2 [
+	^ Jun2dPoint x: self y: aNumber2
 ]
 
 { #category : #'*Jun-Geometry-Basic' }

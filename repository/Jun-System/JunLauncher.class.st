@@ -49,23 +49,24 @@ JunLauncher class >> reopen [
 JunLauncher >> exampleBouncingBalls [
 	| lines random balls velocities colors t form offset morph process |
 	lines := OrderedCollection new.
-	lines add: (Array with: 0 _, 0 _, 0 with: 10 _, 0 _, 0).
-	lines add: (Array with: 10 _, 0 _, 0 with: 10 _, 10 _, 0).
-	lines add: (Array with: 10 _, 10 _, 0 with: 0 _, 10 _, 0).
-	lines add: (Array with: 0 _, 10 _, 0 with: 0 _, 0 _, 0).
-	lines add: (Array with: 0 _, 0 _, 0 with: 0 _, 0 _, 10).
-	lines add: (Array with: 10 _, 0 _, 0 with: 10 _, 0 _, 10).
-	lines add: (Array with: 10 _, 10 _, 0 with: 10 _, 10 _, 10).
-	lines add: (Array with: 0 _, 10 _, 0 with: 0 _, 10 _, 10).
-	lines add: (Array with: 0 _, 0 _, 10 with: 10 _, 0 _, 10).
-	lines add: (Array with: 10 _, 0 _, 10 with: 10 _, 10 _, 10).
-	lines add: (Array with: 10 _, 10 _, 10 with: 0 _, 10 _, 10).
-	lines add: (Array with: 0 _, 10 _, 10 with: 0 _, 0 _, 10).
+	lines add: (Array with: 0 ,, 0 ,, 0 with: 10 ,, 0 ,, 0).
+	lines add: (Array with: 10 ,, 0 ,, 0 with: 10 ,, 10 ,, 0).
+	lines add: (Array with: 10 ,, 10 ,, 0 with: 0 ,, 10 ,, 0).
+	lines add: (Array with: 0 ,, 10 ,, 0 with: 0 ,, 0 ,, 0).
+	lines add: (Array with: 0 ,, 0 ,, 0 with: 0 ,, 0 ,, 10).
+	lines add: (Array with: 10 ,, 0 ,, 0 with: 10 ,, 0 ,, 10).
+	lines add: (Array with: 10 ,, 10 ,, 0 with: 10 ,, 10 ,, 10).
+	lines add: (Array with: 0 ,, 10 ,, 0 with: 0 ,, 10 ,, 10).
+	lines add: (Array with: 0 ,, 0 ,, 10 with: 10 ,, 0 ,, 10).
+	lines add: (Array with: 10 ,, 0 ,, 10 with: 10 ,, 10 ,, 10).
+	lines add: (Array with: 10 ,, 10 ,, 10 with: 0 ,, 10 ,, 10).
+	lines add: (Array with: 0 ,, 10 ,, 10 with: 0 ,, 0 ,, 10).
 	random := Random new.
-	balls := (1 to: 50) collect: [ :i | (random next _, random next _, random next) * 10.0 ].
-	velocities := balls collect: [ :p | (random next _, random next _, random next) * 0.1 ].
+	balls := (1 to: 50) collect: [ :i | (random next ,, random next ,, random next) * 10.0 ].
+	velocities := balls collect: [ :p | (random next ,, random next ,, random next) * 0.1 ].
 	colors := balls collect: [ :p | Color random ].
-	t := ((Jun3dTransformation perspective: 5 _, 5 _, 12) product: (Jun3dTransformation translate: -5 _, -5 _, 0))
+	t := ((Jun3dTransformation perspective: 5 ,, 5 ,, 12)
+		product: (Jun3dTransformation translate: -5 ,, -5 ,, 0))
 		product: (Jun3dTransformation scale: 1.5).
 	form := Form extent: 400 @ 400 depth: 32.
 	offset := form extent // 2.
@@ -74,11 +75,9 @@ JunLauncher >> exampleBouncingBalls [
 	morph borderWidth: 3.
 	morph center: World center.
 	morph openInWorld.
-	process := [ 
-	form getCanvas
+	process := [ form getCanvas
 		in: [ :canvas | 
-			[ 
-			| ps inds |
+			[ | ps inds |
 			canvas fillColor: Color white.
 			lines
 				do: [ :line | 
@@ -87,67 +86,81 @@ JunLauncher >> exampleBouncingBalls [
 						to: (line last transform: t) asPoint * 10 + offset
 						color: Color black ].
 			ps := balls collect: [ :p | p transform: t ].
-			inds := (1 to: ps size) asSortedCollection: [ :i1 :i2 | (ps at: i1) z <= (ps at: i2) z ].
+			inds := (1 to: ps size)
+				asSortedCollection: [ :i1 :i2 | (ps at: i1) z <= (ps at: i2) z ].
 			inds
 				do: [ :i | 
 					| p z |
 					p := ps at: i.
 					z := p z abs * 2.
-					canvas fillOval: (p asPoint * 10 - z + offset extent: (z * 2) asPoint) color: (colors at: i).
+					canvas
+						fillOval: (p asPoint * 10 - z + offset extent: (z * 2) asPoint)
+						color: (colors at: i).
 					balls at: i put: (balls at: i) + (velocities at: i).
 					((balls at: i) x between: 0 and: 10)
-						ifFalse: [ velocities at: i put: (velocities at: i) * (-1 _, 1 _, 1) ].
+						ifFalse: [ velocities at: i put: (velocities at: i) * (-1 ,, 1 ,, 1) ].
 					((balls at: i) y between: 0 and: 10)
-						ifFalse: [ velocities at: i put: (velocities at: i) * (1 _, -1 _, 1) ].
+						ifFalse: [ velocities at: i put: (velocities at: i) * (1 ,, -1 ,, 1) ].
 					((balls at: i) z between: 0 and: 10)
-						ifFalse: [ velocities at: i put: (velocities at: i) * (1 _, 1 _, -1) ] ].
+						ifFalse: [ velocities at: i put: (velocities at: i) * (1 ,, 1 ,, -1) ] ].
 			canvas flush.
 			morph changed.
 			10 milliSecond wait ] repeat ] ] forkAt: Processor userBackgroundPriority.
 	morph
 		on: #click
 		send: #value
-		to: [ 
-			process terminate.
+		to: [ process terminate.
 			morph delete ]
 ]
 
 { #category : #examples }
 JunLauncher >> exampleCanvasHiddenlineRendering [
 	| xarrow yarrow zarrow floorPoints ceilPoints leftPoints rightPoints nearPoints farPoints form morph process projection angle rc |
-	xarrow := Array with: 0_, 0_, 0 with: 1.5_, 0_, 0 with: 1.4_, 0.01_, 0.01 with: 1.4_, -0.01_, -0.01.
-	yarrow := Array with: 0_, 0_, 0 with: 0_, 1.5_, 0 with: 0.01_, 1.4_, 0.01 with: -0.01_, 1.4_, -0.01.
-	zarrow := Array with: 0_, 0_, 0 with: 0_, 0_, 1.5 with: 0.01_, 0.01_, 1.4 with: -0.01_, -0.01_, 1.4.
+	xarrow := Array
+		with: 0 ,, 0 ,, 0
+		with: 1.5 ,, 0 ,, 0
+		with: 1.4 ,, 0.01 ,, 0.01
+		with: 1.4 ,, -0.01 ,, -0.01.
+	yarrow := Array
+		with: 0 ,, 0 ,, 0
+		with: 0 ,, 1.5 ,, 0
+		with: 0.01 ,, 1.4 ,, 0.01
+		with: -0.01 ,, 1.4 ,, -0.01.
+	zarrow := Array
+		with: 0 ,, 0 ,, 0
+		with: 0 ,, 0 ,, 1.5
+		with: 0.01 ,, 0.01 ,, 1.4
+		with: -0.01 ,, -0.01 ,, 1.4.
 	floorPoints := Array
-		with: 0 _, 0 _, 1
-		with: 1 _, 0 _, 1
-		with: 1 _, 1 _, 1
-		with: 0 _, 1 _, 1.
+		with: 0 ,, 0 ,, 1
+		with: 1 ,, 0 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 1.
 	ceilPoints := Array
-		with: 0 _, 1 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 0 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 0 ,, 0 ,, 0.
 	leftPoints := Array
-		with: 1 _, 0 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 1 _, 1
-		with: 1 _, 0 _, 1.
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 0 ,, 1.
 	rightPoints := Array
-		with: 0 _, 0 _, 1
-		with: 0 _, 1 _, 1
-		with: 0 _, 1 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 0 ,, 1
+		with: 0 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 0
+		with: 0 ,, 0 ,, 0.
 	nearPoints := Array
-		with: 0 _, 1 _, 1
-		with: 1 _, 1 _, 1
-		with: 1 _, 1 _, 0
-		with: 0 _, 1 _, 0.
+		with: 0 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 0
+		with: 0 ,, 1 ,, 0.
 	farPoints := Array
-		with: 0 _, 0 _, 0
-		with: 1 _, 0 _, 0
-		with: 1 _, 0 _, 1
-		with: 0 _, 0 _, 1.
+		with: 0 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 1
+		with: 0 ,, 0 ,, 1.
 	form := Form extent: 400 @ 400 depth: 32.
 	morph := form asMorph.
 	morph borderColor: Color gray.
@@ -158,13 +171,11 @@ JunLauncher >> exampleCanvasHiddenlineRendering [
 	rc enableCullface.
 	rc hiddenlinePresentation.
 	angle := 0 asDegrees.
-	process := [ 
-	[ 
-	form getCanvas fillColor: Color white.
+	process := [ [ form getCanvas fillColor: Color white.
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 2 theta: angle)_, angle cos) unitVector * 3
+		eyePoint: ((Jun2dPoint rho: 2 theta: angle) ,, angle cos) unitVector * 3
 		sightPoint: Jun3dPoint zero
-		upVector: 0 _, 0 _, 1
+		upVector: 0 ,, 0 ,, 1
 		fovy: 60 asDegrees
 		near: 0.00001
 		far: 100.0.
@@ -195,47 +206,58 @@ JunLauncher >> exampleCanvasHiddenlineRendering [
 	morph
 		on: #click
 		send: #value
-		to: [ 
-			process terminate.
+		to: [ process terminate.
 			morph delete ]
 ]
 
 { #category : #examples }
 JunLauncher >> exampleCanvasRendering [
 	| xarrow yarrow zarrow floorPoints ceilPoints leftPoints rightPoints nearPoints farPoints form morph process projection angle rc |
-	xarrow := Array with: 0_, 0_, 0 with: 1.5_, 0_, 0 with: 1.4_, 0.01_, 0.01 with: 1.4_, -0.01_, -0.01.
-	yarrow := Array with: 0_, 0_, 0 with: 0_, 1.5_, 0 with: 0.01_, 1.4_, 0.01 with: -0.01_, 1.4_, -0.01.
-	zarrow := Array with: 0_, 0_, 0 with: 0_, 0_, 1.5 with: 0.01_, 0.01_, 1.4 with: -0.01_, -0.01_, 1.4.
+	xarrow := Array
+		with: 0 ,, 0 ,, 0
+		with: 1.5 ,, 0 ,, 0
+		with: 1.4 ,, 0.01 ,, 0.01
+		with: 1.4 ,, -0.01 ,, -0.01.
+	yarrow := Array
+		with: 0 ,, 0 ,, 0
+		with: 0 ,, 1.5 ,, 0
+		with: 0.01 ,, 1.4 ,, 0.01
+		with: -0.01 ,, 1.4 ,, -0.01.
+	zarrow := Array
+		with: 0 ,, 0 ,, 0
+		with: 0 ,, 0 ,, 1.5
+		with: 0.01 ,, 0.01 ,, 1.4
+		with: -0.01 ,, -0.01 ,, 1.4.
 	floorPoints := Array
-		with: 0 _, 0 _, 1
-		with: 1 _, 0 _, 1
-		with: 1 _, 1 _, 1
-		with: 0 _, 1 _, 1.
+		with: 0 ,, 0 ,, 1
+		with: 1 ,, 0 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 1.
 	ceilPoints := Array
-		with: 0 _, 1 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 0 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 0 ,, 0 ,, 0.
 	leftPoints := Array
-		with: 1 _, 0 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 1 _, 1
-		with: 1 _, 0 _, 1.
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 0 ,, 1.
 	rightPoints := Array
-		with: 0 _, 0 _, 1
-		with: 0 _, 1 _, 1
-		with: 0 _, 1 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 0 ,, 1
+		with: 0 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 0
+		with: 0 ,, 0 ,, 0.
 	nearPoints := Array
-		with: 0 _, 1 _, 1
-		with: 1 _, 1 _, 1
-		with: 1 _, 1 _, 0
-		with: 0 _, 1 _, 0.
+		with: 0 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 0
+		with: 0 ,, 1 ,, 0.
 	farPoints := Array
-		with: 0 _, 0 _, 0
-		with: 1 _, 0 _, 0
-		with: 1 _, 0 _, 1
-		with: 0 _, 0 _, 1.
+		with: 0 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 1
+		with: 0 ,, 0 ,, 1.
 	form := Form extent: 400 @ 400 depth: 32.
 	morph := form asMorph.
 	morph borderColor: Color gray.
@@ -245,13 +267,11 @@ JunLauncher >> exampleCanvasRendering [
 	rc := form canvasRenderingContext.
 	rc enableCullface.
 	angle := 0 asDegrees.
-	process := [ 
-	[ 
-	form getCanvas fillColor: Color white.
+	process := [ [ form getCanvas fillColor: Color white.
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 2 theta: angle)_, angle cos) unitVector * 3
+		eyePoint: ((Jun2dPoint rho: 2 theta: angle) ,, angle cos) unitVector * 3
 		sightPoint: Jun3dPoint zero
-		upVector: 0 _, 0 _, 1
+		upVector: 0 ,, 0 ,, 1
 		fovy: 60 asDegrees
 		near: 0.00001
 		far: 100.0.
@@ -280,47 +300,58 @@ JunLauncher >> exampleCanvasRendering [
 	morph
 		on: #click
 		send: #value
-		to: [ 
-			process terminate.
+		to: [ process terminate.
 			morph delete ]
 ]
 
 { #category : #examples }
 JunLauncher >> exampleCanvasWireframeRendering [
 	| xarrow yarrow zarrow floorPoints ceilPoints leftPoints rightPoints nearPoints farPoints form morph process projection angle rc |
-	xarrow := Array with: 0_, 0_, 0 with: 1.5_, 0_, 0 with: 1.4_, 0.01_, 0.01 with: 1.4_, -0.01_, -0.01.
-	yarrow := Array with: 0_, 0_, 0 with: 0_, 1.5_, 0 with: 0.01_, 1.4_, 0.01 with: -0.01_, 1.4_, -0.01.
-	zarrow := Array with: 0_, 0_, 0 with: 0_, 0_, 1.5 with: 0.01_, 0.01_, 1.4 with: -0.01_, -0.01_, 1.4.
+	xarrow := Array
+		with: 0 ,, 0 ,, 0
+		with: 1.5 ,, 0 ,, 0
+		with: 1.4 ,, 0.01 ,, 0.01
+		with: 1.4 ,, -0.01 ,, -0.01.
+	yarrow := Array
+		with: 0 ,, 0 ,, 0
+		with: 0 ,, 1.5 ,, 0
+		with: 0.01 ,, 1.4 ,, 0.01
+		with: -0.01 ,, 1.4 ,, -0.01.
+	zarrow := Array
+		with: 0 ,, 0 ,, 0
+		with: 0 ,, 0 ,, 1.5
+		with: 0.01 ,, 0.01 ,, 1.4
+		with: -0.01 ,, -0.01 ,, 1.4.
 	floorPoints := Array
-		with: 0 _, 0 _, 1
-		with: 1 _, 0 _, 1
-		with: 1 _, 1 _, 1
-		with: 0 _, 1 _, 1.
+		with: 0 ,, 0 ,, 1
+		with: 1 ,, 0 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 1.
 	ceilPoints := Array
-		with: 0 _, 1 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 0 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 0 ,, 0 ,, 0.
 	leftPoints := Array
-		with: 1 _, 0 _, 0
-		with: 1 _, 1 _, 0
-		with: 1 _, 1 _, 1
-		with: 1 _, 0 _, 1.
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 1 ,, 0
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 0 ,, 1.
 	rightPoints := Array
-		with: 0 _, 0 _, 1
-		with: 0 _, 1 _, 1
-		with: 0 _, 1 _, 0
-		with: 0 _, 0 _, 0.
+		with: 0 ,, 0 ,, 1
+		with: 0 ,, 1 ,, 1
+		with: 0 ,, 1 ,, 0
+		with: 0 ,, 0 ,, 0.
 	nearPoints := Array
-		with: 0 _, 1 _, 1
-		with: 1 _, 1 _, 1
-		with: 1 _, 1 _, 0
-		with: 0 _, 1 _, 0.
+		with: 0 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 1
+		with: 1 ,, 1 ,, 0
+		with: 0 ,, 1 ,, 0.
 	farPoints := Array
-		with: 0 _, 0 _, 0
-		with: 1 _, 0 _, 0
-		with: 1 _, 0 _, 1
-		with: 0 _, 0 _, 1.
+		with: 0 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 0
+		with: 1 ,, 0 ,, 1
+		with: 0 ,, 0 ,, 1.
 	form := Form extent: 400 @ 400 depth: 32.
 	morph := form asMorph.
 	morph borderColor: Color gray.
@@ -331,13 +362,11 @@ JunLauncher >> exampleCanvasWireframeRendering [
 	rc enableCullface.
 	rc wireframePresentation.
 	angle := 0 asDegrees.
-	process := [ 
-	[ 
-	form getCanvas fillColor: Color white.
+	process := [ [ form getCanvas fillColor: Color white.
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 2 theta: angle)_, angle cos) unitVector * 3
+		eyePoint: ((Jun2dPoint rho: 2 theta: angle) ,, angle cos) unitVector * 3
 		sightPoint: Jun3dPoint zero
-		upVector: 0 _, 0 _, 1
+		upVector: 0 ,, 0 ,, 1
 		fovy: 60 asDegrees
 		near: 0.00001
 		far: 100.0.
@@ -368,8 +397,7 @@ JunLauncher >> exampleCanvasWireframeRendering [
 	morph
 		on: #click
 		send: #value
-		to: [ 
-			process terminate.
+		to: [ process terminate.
 			morph delete ]
 ]
 
@@ -377,8 +405,8 @@ JunLauncher >> exampleCanvasWireframeRendering [
 JunLauncher >> exampleFakeRaytracing [
 	| sphere1 sphere2 eyePoint random form offset morph |
 	sphere1 := JunSphereSurface unity.
-	sphere2 := JunSphereSurface center: 0.4 _, 0.3 _, 0.5 radius: 0.7.
-	eyePoint := 0 _, 0 _, 10.
+	sphere2 := JunSphereSurface center: 0.4 ,, 0.3 ,, 0.5 radius: 0.7.
+	eyePoint := 0 ,, 0 ,, 10.
 	random := Random new.
 	form := Form extent: 400 @ 400 depth: 32.
 	form getCanvas fillColor: Color black.
@@ -388,9 +416,11 @@ JunLauncher >> exampleFakeRaytracing [
 			-1.0 to: 1.0 by: 200.0 reciprocal do: [ :dy | 
 				-1.0 to: 1.0 by: 200.0 reciprocal do: [ :dx | 
 					| sight |
-					sight := Jun3dLine from: eyePoint to: (dx asRadians sin * 2) _, (dy asRadians sin * 2)_, 0.0.
+					sight := Jun3dLine
+						from: eyePoint
+						to: dx asRadians sin * 2 ,, (dy asRadians sin * 2) ,, 0.0.
 					((sphere1 crossPointsWithLine: sight) collect: [ :p | sphere1 -> p ])
-						_, ((sphere2 crossPointsWithLine: sight) collect: [ :p | sphere2 -> p ])
+						, ((sphere2 crossPointsWithLine: sight) collect: [ :p | sphere2 -> p ])
 						ifNotEmpty: [ :ts | 
 							(ts asSortedCollection: [ :shallow :deep | shallow value z >= deep value z ]) first
 								in: [ :assoc | 
@@ -399,7 +429,9 @@ JunLauncher >> exampleFakeRaytracing [
 									sphere := assoc key.
 									c := sphere == sphere1
 										ifTrue: [ (Color h: 240 s: 0.5 v: 1.0) mixed: point z abs with: (Color h: 240 s: 1 v: 0.0) ]
-										ifFalse: [ (Color h: 60 s: 0.5 v: 1.0) mixed: ((point z - sphere2 center z) / sphere2 radius) abs with: (Color h: 60 s: 1 v: 0.0) ].
+										ifFalse: [ (Color h: 60 s: 0.5 v: 1.0)
+												mixed: ((point z - sphere2 center z) / sphere2 radius) abs
+												with: (Color h: 60 s: 1 v: 0.0) ].
 									x := (dx + 1) * 200.
 									y := (dy + 1) * 200.
 									canvas fillRectangle: (x @ y extent: 1 @ 1) color: c ] ] ] ] ].
@@ -415,25 +447,31 @@ JunLauncher >> exampleFakeRaytracing [
 JunLauncher >> exampleRotatingBouncingBalls [
 	| lines random balls velocities colors perspective rotation omega form offset morph process |
 	lines := OrderedCollection new.
-	lines add: (Array with: 0 _, 0 _, 0 with: 10 _, 0 _, 0).
-	lines add: (Array with: 10 _, 0 _, 0 with: 10 _, 10 _, 0).
-	lines add: (Array with: 10 _, 10 _, 0 with: 0 _, 10 _, 0).
-	lines add: (Array with: 0 _, 10 _, 0 with: 0 _, 0 _, 0).
-	lines add: (Array with: 0 _, 0 _, 0 with: 0 _, 0 _, 10).
-	lines add: (Array with: 10 _, 0 _, 0 with: 10 _, 0 _, 10).
-	lines add: (Array with: 10 _, 10 _, 0 with: 10 _, 10 _, 10).
-	lines add: (Array with: 0 _, 10 _, 0 with: 0 _, 10 _, 10).
-	lines add: (Array with: 0 _, 0 _, 10 with: 10 _, 0 _, 10).
-	lines add: (Array with: 10 _, 0 _, 10 with: 10 _, 10 _, 10).
-	lines add: (Array with: 10 _, 10 _, 10 with: 0 _, 10 _, 10).
-	lines add: (Array with: 0 _, 10 _, 10 with: 0 _, 0 _, 10).
+	lines add: (Array with: 0 ,, 0 ,, 0 with: 10 ,, 0 ,, 0).
+	lines add: (Array with: 10 ,, 0 ,, 0 with: 10 ,, 10 ,, 0).
+	lines add: (Array with: 10 ,, 10 ,, 0 with: 0 ,, 10 ,, 0).
+	lines add: (Array with: 0 ,, 10 ,, 0 with: 0 ,, 0 ,, 0).
+	lines add: (Array with: 0 ,, 0 ,, 0 with: 0 ,, 0 ,, 10).
+	lines add: (Array with: 10 ,, 0 ,, 0 with: 10 ,, 0 ,, 10).
+	lines add: (Array with: 10 ,, 10 ,, 0 with: 10 ,, 10 ,, 10).
+	lines add: (Array with: 0 ,, 10 ,, 0 with: 0 ,, 10 ,, 10).
+	lines add: (Array with: 0 ,, 0 ,, 10 with: 10 ,, 0 ,, 10).
+	lines add: (Array with: 10 ,, 0 ,, 10 with: 10 ,, 10 ,, 10).
+	lines add: (Array with: 10 ,, 10 ,, 10 with: 0 ,, 10 ,, 10).
+	lines add: (Array with: 0 ,, 10 ,, 10 with: 0 ,, 0 ,, 10).
 	random := Random new.
-	balls := (1 to: 100) collect: [ :i | (random next _, random next _, random next) * 10.0 ].
-	velocities := balls collect: [ :p | (random next _, random next _, random next) * 0.1 ].
+	balls := (1 to: 100)
+		collect: [ :i | (random next ,, random next ,, random next) * 10.0 ].
+	velocities := balls collect: [ :p | (random next ,, random next ,, random next) * 0.1 ].
 	colors := balls collect: [ :p | Color random ].
-	perspective := ((Jun3dTransformation perspective: 5_, 5_, 40) product: (Jun3dTransformation translate: -5_, -5_, 0))  product: (Jun3dTransformation scale:  2).
+	perspective := ((Jun3dTransformation perspective: 5 ,, 5 ,, 40)
+		product: (Jun3dTransformation translate: -5 ,, -5 ,, 0))
+		product: (Jun3dTransformation scale: 2).
 	rotation := Jun3dTransformation unity.
-	omega := (((Jun3dTransformation translate: -5_, -5_, -5) product: (Jun3dTransformation rotateX: 1 asDegrees))  product: (Jun3dTransformation rotateY: 2 asDegrees)) product: (Jun3dTransformation translate: 5_, 5_, 5).
+	omega := (((Jun3dTransformation translate: -5 ,, -5 ,, -5)
+		product: (Jun3dTransformation rotateX: 1 asDegrees))
+		product: (Jun3dTransformation rotateY: 2 asDegrees))
+		product: (Jun3dTransformation translate: 5 ,, 5 ,, 5).
 	form := Form extent: 400 @ 400 depth: 32.
 	offset := form extent // 2.
 	morph := form asMorph.
@@ -441,11 +479,9 @@ JunLauncher >> exampleRotatingBouncingBalls [
 	morph borderWidth: 3.
 	morph center: World center.
 	morph openInWorld.
-	process := [ 
-	form getCanvas
+	process := [ form getCanvas
 		in: [ :canvas | 
-			[ 
-			| t ps inds |
+			[ | t ps inds |
 			t := rotation product: perspective.
 			rotation := rotation product: omega.
 			canvas fillColor: Color white.
@@ -456,28 +492,30 @@ JunLauncher >> exampleRotatingBouncingBalls [
 						to: (line last transform: t) asPoint * 10 + offset
 						color: Color black ].
 			ps := balls collect: [ :p | p transform: t ].
-			inds := (1 to: ps size) asSortedCollection: [ :i1 :i2 | (ps at: i1) z <= (ps at: i2) z ].
+			inds := (1 to: ps size)
+				asSortedCollection: [ :i1 :i2 | (ps at: i1) z <= (ps at: i2) z ].
 			inds
 				do: [ :i | 
 					| p z |
 					p := ps at: i.
 					z := p z abs * 5.
-					canvas fillOval: (p asPoint * 10 - z + offset extent: (z * 2) asPoint) color: (colors at: i).
+					canvas
+						fillOval: (p asPoint * 10 - z + offset extent: (z * 2) asPoint)
+						color: (colors at: i).
 					balls at: i put: (balls at: i) + (velocities at: i).
 					((balls at: i) x between: 0 and: 10)
-						ifFalse: [ velocities at: i put: (velocities at: i) * (-1 _, 1 _, 1) ].
+						ifFalse: [ velocities at: i put: (velocities at: i) * (-1 ,, 1 ,, 1) ].
 					((balls at: i) y between: 0 and: 10)
-						ifFalse: [ velocities at: i put: (velocities at: i) * (1 _, -1 _, 1) ].
+						ifFalse: [ velocities at: i put: (velocities at: i) * (1 ,, -1 ,, 1) ].
 					((balls at: i) z between: 0 and: 10)
-						ifFalse: [ velocities at: i put: (velocities at: i) * (1 _, 1 _, -1) ] ].
+						ifFalse: [ velocities at: i put: (velocities at: i) * (1 ,, 1 ,, -1) ] ].
 			canvas flush.
 			morph changed.
 			10 milliSecond wait ] repeat ] ] forkAt: Processor userBackgroundPriority.
 	morph
 		on: #click
 		send: #value
-		to: [ 
-			process terminate.
+		to: [ process terminate.
 			morph delete ]
 ]
 
@@ -486,7 +524,7 @@ JunLauncher >> exampleSphereSurface [
 	| sphere random projection form offset morph process |
 	sphere := JunSphereSurface unity.
 	random := Random new.
-	projection := Jun3dTransformation perspective: 1_, 3_, 10.
+	projection := Jun3dTransformation perspective: 1 ,, 3 ,, 10.
 	form := Form extent: 400 @ 400 depth: 32.
 	form getCanvas fillColor: Color black.
 	offset := form extent // 2.
@@ -495,13 +533,11 @@ JunLauncher >> exampleSphereSurface [
 	morph borderWidth: 3.
 	morph center: World center.
 	morph openInWorld.
-	process := [ 
-	[ 
-	form getCanvas
+	process := [ [ form getCanvas
 		in: [ :canvas | 
 			| line |
-			"line :=  random next * 2 - 1_, (random next * 2 - 1)_, 2 to: random next * 2 - 1_, (random next * 2 - 1)_, -2."
-			line := random next * 2 - 1 _, (random next * 2 - 1) _, 1 to: 0 _, 0 _, 0.
+			"line :=  random next * 2 - 1,, (random next * 2 - 1),, 2 to: random next * 2 - 1,, (random next * 2 - 1),, -2."
+			line := random next * 2 - 1 ,, (random next * 2 - 1) ,, 1 to: 0 ,, 0 ,, 0.
 			(sphere crossPointsWithLine: line)
 				do: [ :point | 
 					(point transform: projection)
@@ -510,13 +546,14 @@ JunLauncher >> exampleSphereSurface [
 							z := p z abs * 2 max: 0.5.
 							n := p unitVector z negated.
 							n > 0
-								ifTrue: [ canvas fillOval: (p asPoint * 200 - z + offset extent: (z * 2) asPoint) color: (Color gray: (n + 0.2 min: 1.0)) ] ] ] ].
+								ifTrue: [ canvas
+										fillOval: (p asPoint * 200 - z + offset extent: (z * 2) asPoint)
+										color: (Color gray: (n + 0.2 min: 1.0)) ] ] ] ].
 	morph changed ] repeat ] forkAt: Processor userBackgroundPriority.
 	morph
 		on: #click
 		send: #value
-		to: [ 
-			process terminate.
+		to: [ process terminate.
 			morph delete ]
 ]
 

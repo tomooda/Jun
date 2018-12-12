@@ -31,13 +31,11 @@ JunMoleculeGeometry class >> example2 [
 	morph center: World center.
 	morph openInWorld.
 	angle := 0 asDegrees.
-	process := [ 
-	[ 
-	| projection |
+	process := [ [ | projection |
 	projection := JunParallelProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle) _, angle cos) unitVector * 15
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle) ,, angle cos) unitVector * 15
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		height: 2.0
 		near: 0.1
 		far: 100.0.
@@ -58,8 +56,7 @@ JunMoleculeGeometry class >> example2 [
 	morph
 		on: #click
 		send: #value
-		to: [ 
-			process terminate.
+		to: [ process terminate.
 			morph delete ]
 ]
 
@@ -80,9 +77,9 @@ JunMoleculeGeometry class >> example3 [
 	rc backgroundColor: Color black.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: ((Jun2dPoint rho: 1 theta: angle) _, angle cos) unitVector * 10
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: ((Jun2dPoint rho: 1 theta: angle) ,, angle cos) unitVector * 10
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -128,9 +125,9 @@ JunMoleculeGeometry class >> example5 [
 	rc backgroundColor: Color black.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: (angle sin _, angle cos _, 0) unitVector * 50
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: (angle sin ,, angle cos ,, 0) unitVector * 50
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.
@@ -270,9 +267,9 @@ H    -7.610532   -0.663846   -0.054756'.
 	rc backgroundColor: Color black.
 	process := [ [ | projection |
 	projection := JunPerspectiveProjection
-		eyePoint: (angle sin _, angle cos _, 0) unitVector * 50
-		sightPoint: 0 _, 0 _, 0
-		upVector: 0 _, 0 _, 1
+		eyePoint: (angle sin ,, angle cos ,, 0) unitVector * 50
+		sightPoint: 0 ,, 0 ,, 0
+		upVector: 0 ,, 0 ,, 1
 		fovy: 30 asDegrees
 		near: 0.1
 		far: 100.0.

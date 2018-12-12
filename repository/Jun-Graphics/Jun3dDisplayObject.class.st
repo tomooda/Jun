@@ -234,17 +234,21 @@ Jun3dDisplayObject class >> sphere: degree texture: aJunTexture [
 				points:
 					(Array
 						with: (Jun3dPoint rho: 2.0 phi: longitude asDegrees theta: (latitude + degree) asDegrees)
-						with: (Jun3dPoint rho: 2.0 phi: (longitude + degree) asDegrees theta: (latitude + degree) asDegrees)
+						with:
+							(Jun3dPoint
+								rho: 2.0
+								phi: (longitude + degree) asDegrees
+								theta: (latitude + degree) asDegrees)
 						with: (Jun3dPoint rho: 2.0 phi: (longitude + degree) asDegrees theta: latitude asDegrees)
 						with: (Jun3dPoint rho: 2.0 phi: longitude asDegrees theta: latitude asDegrees)).
 			polygon
 				setTexture: aJunTexture
 				points:
 					(Array
-						with: longitude / 360.0 _, ((latitude + degree) / 180.0)
-						with: (longitude + degree) / 360.0 _, ((latitude + degree) / 180.0)
-						with: (longitude + degree) / 360.0 _, (latitude / 180.0)
-						with: longitude / 360.0 _, (latitude / 180.0)).
+						with: longitude / 360.0 ,, ((latitude + degree) / 180.0)
+						with: (longitude + degree) / 360.0 ,, ((latitude + degree) / 180.0)
+						with: (longitude + degree) / 360.0 ,, (latitude / 180.0)
+						with: longitude / 360.0 ,, (latitude / 180.0)).
 			sphere add: polygon ] ].
 	^ sphere
 ]
@@ -262,6 +266,7 @@ Jun3dDisplayObject class >> sphereFrom: fromPoint to: toPoint width: widthFactor
 { #category : #'typical objects - cubes' }
 Jun3dDisplayObject class >> unitCube [
 	"Jun3dDisplayObject unitCube show"
+
 	| faces |
 	faces := OrderedCollection new: 6.
 	faces
@@ -269,80 +274,64 @@ Jun3dDisplayObject class >> unitCube [
 			(Jun3dDisplayPolygon
 				points:
 					(Array
-						with: 0 _, 0 _, 1
-						with: 1 _, 0 _, 1
-						with: 1 _, 1 _, 1
-						with: 0 _, 1 _, 1)).
+						with: 0 ,, 0 ,, 1
+						with: 1 ,, 0 ,, 1
+						with: 1 ,, 1 ,, 1
+						with: 0 ,, 1 ,, 1)).
 	faces
 		add:
 			(Jun3dDisplayPolygon
 				points:
 					(Array
-						with: 0 _, 1 _, 0
-						with: 1 _, 1 _, 0
-						with: 1 _, 0 _, 0
-						with: 0 _, 0 _, 0)).
+						with: 0 ,, 1 ,, 0
+						with: 1 ,, 1 ,, 0
+						with: 1 ,, 0 ,, 0
+						with: 0 ,, 0 ,, 0)).
 	faces
 		add:
 			(Jun3dDisplayPolygon
 				points:
 					(Array
-						with: 1 _, 0 _, 0
-						with: 1 _, 1 _, 0
-						with: 1 _, 1 _, 1
-						with: 1 _, 0 _, 1)).
+						with: 1 ,, 0 ,, 0
+						with: 1 ,, 1 ,, 0
+						with: 1 ,, 1 ,, 1
+						with: 1 ,, 0 ,, 1)).
 	faces
 		add:
 			(Jun3dDisplayPolygon
 				points:
 					(Array
-						with: 0 _, 0 _, 1
-						with: 0 _, 1 _, 1
-						with: 0 _, 1 _, 0
-						with: 0 _, 0 _, 0)).
+						with: 0 ,, 0 ,, 1
+						with: 0 ,, 1 ,, 1
+						with: 0 ,, 1 ,, 0
+						with: 0 ,, 0 ,, 0)).
 	faces
 		add:
 			(Jun3dDisplayPolygon
 				points:
 					(Array
-						with: 0 _, 1 _, 1
-						with: 1 _, 1 _, 1
-						with: 1 _, 1 _, 0
-						with: 0 _, 1 _, 0)).
+						with: 0 ,, 1 ,, 1
+						with: 1 ,, 1 ,, 1
+						with: 1 ,, 1 ,, 0
+						with: 0 ,, 1 ,, 0)).
 	faces
 		add:
 			(Jun3dDisplayPolygon
 				points:
 					(Array
-						with: 0 _, 0 _, 0
-						with: 1 _, 0 _, 0
-						with: 1 _, 0 _, 1
-						with: 0 _, 0 _, 1)).
+						with: 0 ,, 0 ,, 0
+						with: 1 ,, 0 ,, 0
+						with: 1 ,, 0 ,, 1
+						with: 0 ,, 0 ,, 1)).
 	^ Jun3dDisplayCompoundObject components: faces
-]
-
-{ #category : #'typical objects - spheres' }
-Jun3dDisplayObject class >> xUnitGlobe [
-	^ self globe
-		transform:
-			(((Jun3dTransformation scale: 0.5 _, 0.5 _, 0.5) product: (Jun3dTransformation translate: 0 _, 0 _, 0.5))
-				product: (Jun3dTransformation rotateY: (JunAngle fromDeg: 90)))
-]
-
-{ #category : #'typical objects - spheres' }
-Jun3dDisplayObject class >> xUnitHemisphere [
-	^ self hemisphere
-		transform:
-			((((Jun3dTransformation scale: 0.5 _, 0.5 _, 0.5) product: (Jun3dTransformation translate: 0 _, 0 _, 0.5))
-				product: (Jun3dTransformation rotateZ: (JunAngle fromDeg: 90)))
-				product: (Jun3dTransformation rotateY: (JunAngle fromDeg: 90)))
 ]
 
 { #category : #'typical objects - spheres' }
 Jun3dDisplayObject class >> xUnitSphere [
 	^ self sphere
 		transform:
-			(((Jun3dTransformation scale: 0.5 _, 0.5 _, 0.5) product: (Jun3dTransformation translate: 0 _, 0 _, 0.5))
+			(((Jun3dTransformation scale: 0.5 ,, 0.5 ,, 0.5)
+				product: (Jun3dTransformation translate: 0 ,, 0 ,, 0.5))
 				product: (Jun3dTransformation rotateY: (JunAngle fromDeg: 90)))
 ]
 
@@ -367,8 +356,8 @@ Jun3dDisplayObject class >> xyPointsAndSphere: degrees radius: radius longitude:
 		ifTrue: [ y := 0.0 ].
 	(z - 0.0) abs < accuracy
 		ifTrue: [ z := 0.0 ].
-	x _, y _, z ].
-	xyBlock := [ :phi :theta | phi / theLongitude _, (theta / theLatitude) ].
+	x ,, y ,, z ].
+	xyBlock := [ :phi :theta | phi / theLongitude ,, (theta / theLatitude) ].
 	numberOfPolygons := (theLongitude / theDegrees * (theLatitude / theDegrees)) rounded.
 	pointCollections := OrderedCollection new: numberOfPolygons.
 	xyCollection := OrderedCollection new: numberOfPolygons * 4.
@@ -383,20 +372,20 @@ Jun3dDisplayObject class >> xyPointsAndSphere: degrees radius: radius longitude:
 			previousPoint := currentPoint.
 			currentPoint := xyzBlock value: theRadius value: phi value: theta + theDegrees.
 			currentPoint = previousPoint
-				ifFalse: [ 
-					pointCollection add: currentPoint.
+				ifFalse: [ pointCollection add: currentPoint.
 					xyCollection add: (xyBlock value: phi value: theta + theDegrees) ].
 			previousPoint := currentPoint.
-			currentPoint := xyzBlock value: theRadius value: phi + theDegrees value: theta + theDegrees.
+			currentPoint := xyzBlock
+				value: theRadius
+				value: phi + theDegrees
+				value: theta + theDegrees.
 			currentPoint = previousPoint
-				ifFalse: [ 
-					pointCollection add: currentPoint.
+				ifFalse: [ pointCollection add: currentPoint.
 					xyCollection add: (xyBlock value: phi + theDegrees value: theta + theDegrees) ].
 			previousPoint := currentPoint.
 			currentPoint := xyzBlock value: theRadius value: phi + theDegrees value: theta.
 			(currentPoint = previousPoint or: [ currentPoint = firstPoint ])
-				ifFalse: [ 
-					pointCollection add: currentPoint.
+				ifFalse: [ pointCollection add: currentPoint.
 					xyCollection add: (xyBlock value: phi + theDegrees value: theta) ].
 			previousPoint := currentPoint.
 			pointCollections add: pointCollection asArray ] ].
@@ -677,7 +666,7 @@ Jun3dDisplayObject >> preferredBoundingBox [
 		ifTrue: [ maxY := 0 ].
 	maxZ == nil
 		ifTrue: [ maxZ := 0 ].
-	^ Jun3dBoundingBox origin: minX _, minY _, minZ corner: maxX _, maxY _, maxZ
+	^ Jun3dBoundingBox origin: minX ,, minY ,, minZ corner: maxX ,, maxY ,, maxZ
 ]
 
 { #category : #enumerating }

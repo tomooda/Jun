@@ -52,7 +52,7 @@ Jun3dLine >> angleWithLine: aLine [
 
 { #category : #converting }
 Jun3dLine >> asUnitVector [
-	^ (f _, g _, h) unitVector
+	^ (f ,, g ,, h) unitVector
 ]
 
 { #category : #accessing }

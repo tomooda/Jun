@@ -21,7 +21,7 @@ Jun2dPoint class >> example1 [
 	"Jun2dPoint example1."
 
 	| aPoint |
-	aPoint := 1 , 0.5.
+	aPoint := 1 ,, 0.5.
 	Transcript
 		cr;
 		show: aPoint printString.
@@ -39,19 +39,23 @@ Jun2dPoint class >> example2 [
 
 	| aPolyline polylineBlock tS tT form canvas |
 	aPolyline := OrderedCollection new.
-	aPolyline add: 0 _, 0.
-	aPolyline add: 50 _, 0.
-	aPolyline add: 50 _, 50.
-	aPolyline add: 0 _, 50.
-	aPolyline add: 0 _, 0.
+	aPolyline add: 0 ,, 0.
+	aPolyline add: 50 ,, 0.
+	aPolyline add: 50 ,, 50.
+	aPolyline add: 0 ,, 50.
+	aPolyline add: 0 ,, 0.
 	form := Form extent: 200 @ 200 depth: 32.
 	canvas := form getCanvas.
 	polylineBlock := [ :points :color | 1 to: points size - 1 do: [ :i | canvas line: (points at: i) to: (points at: i + 1) color: color ] ].
-	tS := Jun2dTransformation scale: 1.5 _, 1.5.
+	tS := Jun2dTransformation scale: 1.5 ,, 1.5.
 	tT := Jun2dTransformation translate: (Jun2dPoint fromPoint: form extent // 2).
 	canvas fillColor: Color white.
-	polylineBlock value: (aPolyline collect: [ :p | (p transform: tT) asPoint ]) value: Color black.
-	polylineBlock value: (aPolyline collect: [ :p | (p transform: (tS product: tT)) asPoint ]) value: Color red.
+	polylineBlock
+		value: (aPolyline collect: [ :p | (p transform: tT) asPoint ])
+		value: Color black.
+	polylineBlock
+		value: (aPolyline collect: [ :p | (p transform: (tS product: tT)) asPoint ])
+		value: Color red.
 	canvas flush.
 	form asMorph openInWindow
 ]
@@ -62,17 +66,16 @@ Jun2dPoint class >> example3 [
 
 	| aPolyline polylineBlock tR tT form canvas |
 	aPolyline := OrderedCollection new.
-	aPolyline add: 0 _ , 0.
-	aPolyline add: 50 _ , 0.
-	aPolyline add: 50 _ , 50.
-	aPolyline add: 0 _ , 50.
-	aPolyline add: 0 _ , 0.
+	aPolyline add: 0 ,, 0.
+	aPolyline add: 50 ,, 0.
+	aPolyline add: 50 ,, 50.
+	aPolyline add: 0 ,, 50.
+	aPolyline add: 0 ,, 0.
 	form := Form extent: 200 @ 200 depth: 32.
 	canvas := form getCanvas.
 	polylineBlock := [ :points :color | 1 to: points size - 1 do: [ :i | canvas line: (points at: i) to: (points at: i + 1) color: color ] ].
 	tR := Jun2dTransformation rotate: (JunAngle fromDeg: 30).
-	tT := Jun2dTransformation
-		translate: (Jun2dPoint fromPoint: form extent // 2).
+	tT := Jun2dTransformation translate: (Jun2dPoint fromPoint: form extent // 2).
 	canvas fillColor: Color white.
 	polylineBlock
 		value: (aPolyline collect: [ :p | (p transform: tT) asPoint ])
@@ -108,7 +111,7 @@ Jun2dPoint class >> neighborhood24Points: aPoint [
 	-2 to: 2 do: [ :y | 
 		-2 to: 2 do: [ :x | 
 			(x = 0 and: [ y = 0 ])
-				ifFalse: [ aCollection add: aPoint + (x _ , y) ] ] ].
+				ifFalse: [ aCollection add: aPoint + (x ,, y) ] ] ].
 	^ aCollection
 ]
 
@@ -118,10 +121,10 @@ Jun2dPoint class >> neighborhood4Points: aPoint [
 
 	| aCollection |
 	aCollection := OrderedCollection new: 4.
-	aCollection add: aPoint + (1 _, 0).
-	aCollection add: aPoint + (0 _, 1).
-	aCollection add: aPoint + (-1 _, 0).
-	aCollection add: aPoint + (0 _, -1).
+	aCollection add: aPoint + (1 ,, 0).
+	aCollection add: aPoint + (0 ,, 1).
+	aCollection add: aPoint + (-1 ,, 0).
+	aCollection add: aPoint + (0 ,, -1).
 	^ aCollection
 ]
 
@@ -131,14 +134,14 @@ Jun2dPoint class >> neighborhood8Points: aPoint [
 
 	| aCollection |
 	aCollection := OrderedCollection new: 8.
-	aCollection add: aPoint + (1 _, 0).
-	aCollection add: aPoint + (1 _, 1).
-	aCollection add: aPoint + (0 _, 1).
-	aCollection add: aPoint + (-1 _, 1).
-	aCollection add: aPoint + (-1 _, 0).
-	aCollection add: aPoint + (-1 _, -1).
-	aCollection add: aPoint + (0 _, -1).
-	aCollection add: aPoint + (1 _, -1).
+	aCollection add: aPoint + (1 ,, 0).
+	aCollection add: aPoint + (1 ,, 1).
+	aCollection add: aPoint + (0 ,, 1).
+	aCollection add: aPoint + (-1 ,, 1).
+	aCollection add: aPoint + (-1 ,, 0).
+	aCollection add: aPoint + (-1 ,, -1).
+	aCollection add: aPoint + (0 ,, -1).
+	aCollection add: aPoint + (1 ,, -1).
 	^ aCollection
 ]
 
@@ -196,7 +199,7 @@ Jun2dPoint >> + aPoint [
 ]
 
 { #category : #converting }
-Jun2dPoint >> , aNumber [
+Jun2dPoint >> ,, aNumber [
 	^ Jun3dPoint x: self x y: self y z: aNumber
 ]
 
@@ -284,7 +287,7 @@ Jun2dPoint >> as2dPoint [
 
 { #category : #converting }
 Jun2dPoint >> as3dPoint [
-	^ self , 0.0
+	^ self ,, 0.0
 ]
 
 { #category : #converting }
@@ -408,7 +411,7 @@ Jun2dPoint >> setY: aNumber [
 
 { #category : #functions }
 Jun2dPoint >> sphere: radiusValue [ 
-	^JunSphereSurface center: self x _, self y , 0 radius: radiusValue
+	^JunSphereSurface center: self x ,, self y ,, 0 radius: radiusValue
 ]
 
 { #category : #printing }

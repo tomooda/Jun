@@ -37,40 +37,40 @@ Jun3dBoundingBox >> asArrayOfPlanes [
 	^ (Array new: 6)
 		at: 1
 			put:
-				(planeClass
-						on: originPoint x _, originPoint y _, originPoint z
-						on: originPoint x _, cornerPoint y _, originPoint z
-						on: cornerPoint x _, originPoint y _, originPoint z);
+			(planeClass
+				on: originPoint x ,, originPoint y ,, originPoint z
+				on: originPoint x ,, cornerPoint y ,, originPoint z
+				on: cornerPoint x ,, originPoint y ,, originPoint z);
 		at: 2
 			put:
-				(planeClass
-						on: originPoint x _, originPoint y _, originPoint z
-						on: cornerPoint x _, originPoint y _, originPoint z
-						on: originPoint x _, originPoint y _, cornerPoint z);
+			(planeClass
+				on: originPoint x ,, originPoint y ,, originPoint z
+				on: cornerPoint x ,, originPoint y ,, originPoint z
+				on: originPoint x ,, originPoint y ,, cornerPoint z);
 		at: 3
 			put:
-				(planeClass
-						on: originPoint x _, originPoint y _, originPoint z
-						on: originPoint x _, originPoint y _, cornerPoint z
-						on: originPoint x _, cornerPoint y _, originPoint z);
+			(planeClass
+				on: originPoint x ,, originPoint y ,, originPoint z
+				on: originPoint x ,, originPoint y ,, cornerPoint z
+				on: originPoint x ,, cornerPoint y ,, originPoint z);
 		at: 4
 			put:
-				(planeClass
-						on: cornerPoint x _, cornerPoint y _, cornerPoint z
-						on: cornerPoint x _, originPoint y _, cornerPoint z
-						on: cornerPoint x _, cornerPoint y _, originPoint z);
+			(planeClass
+				on: cornerPoint x ,, cornerPoint y ,, cornerPoint z
+				on: cornerPoint x ,, originPoint y ,, cornerPoint z
+				on: cornerPoint x ,, cornerPoint y ,, originPoint z);
 		at: 5
 			put:
-				(planeClass
-						on: cornerPoint x _, cornerPoint y _, cornerPoint z
-						on: cornerPoint x _, cornerPoint y _, originPoint z
-						on: originPoint x _, cornerPoint y _, cornerPoint z);
+			(planeClass
+				on: cornerPoint x ,, cornerPoint y ,, cornerPoint z
+				on: cornerPoint x ,, cornerPoint y ,, originPoint z
+				on: originPoint x ,, cornerPoint y ,, cornerPoint z);
 		at: 6
 			put:
-				(planeClass
-						on: cornerPoint x _, originPoint y _, cornerPoint z
-						on: cornerPoint x _, cornerPoint y _, cornerPoint z
-						on: originPoint x _, cornerPoint y _, cornerPoint z);
+			(planeClass
+				on: cornerPoint x ,, originPoint y ,, cornerPoint z
+				on: cornerPoint x ,, cornerPoint y ,, cornerPoint z
+				on: originPoint x ,, cornerPoint y ,, cornerPoint z);
 		yourself
 ]
 
@@ -89,13 +89,13 @@ Jun3dBoundingBox >> asJunOpenGL3dObject [
 Jun3dBoundingBox >> asPointArray [
 	^ (Array new: 8)
 		at: 1 put: self origin;
-		at: 2 put: self corner x _, self origin y _, self origin z;
-		at: 3 put: self corner x _, self corner y _, self origin z;
-		at: 4 put: self origin x _, self corner y _, self origin z;
+		at: 2 put: self corner x ,, self origin y ,, self origin z;
+		at: 3 put: self corner x ,, self corner y ,, self origin z;
+		at: 4 put: self origin x ,, self corner y ,, self origin z;
 		at: 5 put: self corner;
-		at: 6 put: self corner x _, self origin y _, self corner z;
-		at: 7 put: self origin x _, self origin y _, self corner z;
-		at: 8 put: self origin x _, self corner y _, self corner z;
+		at: 6 put: self corner x ,, self origin y ,, self corner z;
+		at: 7 put: self origin x ,, self origin y ,, self corner z;
+		at: 8 put: self origin x ,, self corner y ,, self corner z;
 		yourself
 ]
 

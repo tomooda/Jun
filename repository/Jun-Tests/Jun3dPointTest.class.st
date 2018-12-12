@@ -12,8 +12,8 @@ Jun3dPointTest >> testAbs1 [
 	x := -2.
 	y := 3.
 	z := 4.
-	p := x _, y _, z.
-	self assert: p abs equals: x abs _, y abs _, z abs
+	p := x ,, y ,, z.
+	self assert: p abs equals: x abs ,, y abs ,, z abs
 ]
 
 { #category : #tests }
@@ -24,8 +24,8 @@ Jun3dPointTest >> testAbs2 [
 	x := 2.
 	y := -3.
 	z := 4.
-	p := x _, y _, z.
-	self assert: p abs equals: x abs _, y abs _, z abs
+	p := x ,, y ,, z.
+	self assert: p abs equals: x abs ,, y abs ,, z abs
 ]
 
 { #category : #tests }
@@ -36,8 +36,8 @@ Jun3dPointTest >> testAbs3 [
 	x := 2.
 	y := 3.
 	z := -4.
-	p := x _, y _, z.
-	self assert: p abs equals: x abs _, y abs _, z abs
+	p := x ,, y ,, z.
+	self assert: p abs equals: x abs ,, y abs ,, z abs
 ]
 
 { #category : #tests }
@@ -51,8 +51,8 @@ Jun3dPointTest >> testAddition1 [
 	x2 := -2.
 	y2 := 3.
 	z2 := 4.
-	p1 := x1 _, y1 _, z1.
-	p2 := x2 _, y2 _, z2.
+	p1 := x1 ,, y1 ,, z1.
+	p2 := x2 ,, y2 ,, z2.
 	self assert: p1 + p2 equals: (Jun3dPoint x: x1 + x2 y: y1 + y2 z: z1 + z2)
 ]
 
@@ -61,7 +61,7 @@ Jun3dPointTest >> testAddition2 [
 	"adding zero makes the identity"
 
 	| p zero |
-	p := 1 _, -2 _, 3.
+	p := 1 ,, -2 ,, 3.
 	zero := Jun3dPoint zero.
 	self assert: p + zero equals: p
 ]
@@ -71,8 +71,8 @@ Jun3dPointTest >> testAddition3 [
 	"addition is exxchangeable"
 
 	| p1 p2 |
-	p1 := 1 _, -2 _, 3.
-	p2 := -2 _, 3 _, 4.
+	p1 := 1 ,, -2 ,, 3.
+	p2 := -2 ,, 3 ,, 4.
 	self assert: p1 + p2 equals: p2 + p1
 ]
 
@@ -81,9 +81,9 @@ Jun3dPointTest >> testAddition4 [
 	"addition is distributable"
 
 	| p1 p2 p3 |
-	p1 := 1 _, -2 _, 3.
-	p2 := -2 _, 3 _, 4.
-	p3 := 10 _, 20 _, -30.
+	p1 := 1 ,, -2 ,, 3.
+	p2 := -2 ,, 3 ,, 4.
+	p3 := 10 ,, 20 ,, -30.
 	self assert: p1 + p2 + p3 equals: p1 + (p2 + p3)
 ]
 
@@ -92,7 +92,7 @@ Jun3dPointTest >> testAdditionCoerceNumberLeft [
 	"coerce a number"
 
 	| p a |
-	p := 1 _, -2 _, 3.
+	p := 1 ,, -2 ,, 3.
 	a := -4.
 	self assert: a + p equals: (Jun3dPoint x: p x + a y: p y + a z: p z + a)
 ]
@@ -102,7 +102,7 @@ Jun3dPointTest >> testAdditionCoerceNumberRight [
 	"coerce a number"
 
 	| p a |
-	p := 1 _, -2 _, 3.
+	p := 1 ,, -2 ,, 3.
 	a := -4.
 	self assert: p + a equals: (Jun3dPoint x: p x + a y: p y + a z: p z + a)
 ]
@@ -112,7 +112,7 @@ Jun3dPointTest >> testAdditionCoercePointLeft [
 	"coerce a number"
 
 	| p1 p2 |
-	p1 := 1 _, -2 _, 3.
+	p1 := 1 ,, -2 ,, 3.
 	p2 := -4 @ 5.
 	self assert: p2 + p1 equals: (Jun3dPoint x: p1 x + p2 x y: p1 y + p2 y z: p1 z)
 ]
@@ -122,7 +122,7 @@ Jun3dPointTest >> testAdditionCoercePointRight [
 	"coerce a number"
 
 	| p1 p2 |
-	p1 := 1 _, -2 _, 3.
+	p1 := 1 ,, -2 ,, 3.
 	p2 := -4 @ 5.
 	self assert: p1 + p2 equals: (Jun3dPoint x: p1 x + p2 x y: p1 y + p2 y z: p1 z)
 ]
@@ -135,8 +135,8 @@ Jun3dPointTest >> testAs2dPoint [
 	x := 2.
 	y := -3.
 	z := 4.
-	p := x _, y _, z.
-	self assert: p as2dPoint equals: x _, y
+	p := x ,, y ,, z.
+	self assert: p as2dPoint equals: x ,, y
 ]
 
 { #category : #tests }
@@ -147,8 +147,8 @@ Jun3dPointTest >> testAs3dPoint [
 	x := 2.
 	y := -3.
 	z := 4.
-	p := x _ , y _ , z.
-	self assert: p as3dPoint equals: x _ , y _ , z
+	p := x ,, y ,, z.
+	self assert: p as3dPoint equals: x ,, y ,, z
 ]
 
 { #category : #tests }
@@ -159,7 +159,7 @@ Jun3dPointTest >> testAsArray [
 	x := 2.
 	y := -3.
 	z := 4.
-	p := x _ , y _ , z.
+	p := x ,, y ,, z.
 	self
 		assert: p asArray
 		equals:
@@ -170,12 +170,12 @@ Jun3dPointTest >> testAsArray [
 
 { #category : #tests }
 Jun3dPointTest >> testAsPoint [
-	self assert: (2 _ , -3 _ , 4) asPoint equals: 2.0 @ -3.0
+	self assert: (2 ,, -3 ,, 4) asPoint equals: 2.0 @ -3.0
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testAsPointArrays [
-	self assert: (2 , -3 , 4) asPointArrays equals: {{(2.0 @ -3.0)}}
+	self assert: (2 ,, -3 ,, 4) asPointArrays equals: {{(2.0 @ -3.0)}}
 ]
 
 { #category : #tests }
@@ -186,14 +186,14 @@ Jun3dPointTest >> testCeiling [
 	x := 1.1.
 	y := -2.1.
 	z := 3.7.
-	self assert: (x _, y _, z) ceiling equals: x ceiling _, y ceiling _, z ceiling
+	self assert: (x ,, y ,, z) ceiling equals: x ceiling ,, y ceiling ,, z ceiling
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testCoerce1 [
 	"coerce a number"
 
-	self assert: (Jun3dPoint coerce: -4) equals: -4 _, -4 _, -4
+	self assert: (Jun3dPoint coerce: -4) equals: -4 ,, -4 ,, -4
 ]
 
 { #category : #tests }
@@ -202,7 +202,7 @@ Jun3dPointTest >> testCoerce2 [
 
 	| p |
 	p := -4 @ 5.
-	self assert: (Jun3dPoint coerce: p) equals: -4 _, 5 _, 0
+	self assert: (Jun3dPoint coerce: p) equals: -4 ,, 5 ,, 0
 ]
 
 { #category : #tests }
@@ -220,7 +220,7 @@ Jun3dPointTest >> testCreation1 [
 { #category : #tests }
 Jun3dPointTest >> testCreation2 [
 	| p1 |
-	p1 := 1 _, -2 _, 3.
+	p1 := 1 ,, -2 ,, 3.
 	self assert: p1 x isFloat.
 	self assert: p1 y isFloat.
 	self assert: p1 z isFloat.
@@ -248,8 +248,8 @@ Jun3dPointTest >> testDivision1 [
 	x2 := -2.
 	y2 := 3.
 	z2 := 4.
-	p1 := x1 _, y1 _, z1.
-	p2 := x2 _, y2 _, z2.
+	p1 := x1 ,, y1 ,, z1.
+	p2 := x2 ,, y2 ,, z2.
 	self assert: ((Jun3dPoint x: x1 // x2 y: y1 // y2 z: z1 // z2) equal: p1 // p2)
 ]
 
@@ -258,8 +258,8 @@ Jun3dPointTest >> testDivision3 [
 	"dividing itself makes unity"
 
 	| p |
-	p := 1 _, -2 _, 3.
-	self assert: (p // p) equals: Jun3dPoint unity
+	p := 1 ,, -2 ,, 3.
+	self assert: p // p equals: Jun3dPoint unity
 ]
 
 { #category : #tests }
@@ -267,7 +267,7 @@ Jun3dPointTest >> testDivision4 [
 	"dividing zero is prohibited"
 
 	| p zero |
-	p := 1 _, -2 _, 3.
+	p := 1 ,, -2 ,, 3.
 	zero := Jun3dPoint zero.
 	self should: [ p // zero ] raise: ZeroDivide
 ]
@@ -277,7 +277,7 @@ Jun3dPointTest >> testDivision5 [
 	"dividing zero makes zero"
 
 	| p zero |
-	p := 1 _, -2 _, 3.
+	p := 1 ,, -2 ,, 3.
 	zero := Jun3dPoint zero.
 	self assert: zero // p equals: zero
 ]
@@ -285,9 +285,10 @@ Jun3dPointTest >> testDivision5 [
 { #category : #tests }
 Jun3dPointTest >> testDivision6 [
 	"multiplication and division of the same argument makes identity"
+
 	| p1 p2 |
-	p1 := 1 _, -2 _, 3.
-	p2 := 4 _, 4 _, -1.
+	p1 := 1 ,, -2 ,, 3.
+	p2 := 4 ,, 4 ,, -1.
 	self assert: p1 * p2 // p2 equals: p1
 ]
 
@@ -341,8 +342,8 @@ Jun3dPointTest >> testEquals1 [
 	"equality permits errors within accuracy"
 
 	| p1 delta |
-	p1 := 2 _, -3 _, 4.
-	delta := (p1 accuracy negated _, p1 accuracy _, p1 accuracy) / 10.
+	p1 := 2 ,, -3 ,, 4.
+	delta := (p1 accuracy negated ,, p1 accuracy ,, p1 accuracy) / 10.
 	self assert: (p1 + delta equal: p1)
 ]
 
@@ -351,19 +352,20 @@ Jun3dPointTest >> testEquals2 [
 	"equality permits errors within accuracy"
 
 	| p1 delta |
-	p1 := 2 _, -3 _, 4.
-	delta := (p1 accuracy negated _, p1 accuracy _, p1 accuracy) * 10.
+	p1 := 2 ,, -3 ,, 4.
+	delta := (p1 accuracy negated ,, p1 accuracy ,, p1 accuracy) * 10.
 	self deny: (p1 + delta equal: p1)
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testFloor [
 	"floor of all components"
+
 	| x y z |
 	x := 1.1.
 	y := -2.1.
 	z := 3.7.
-	self assert: (x _, y _, z) floor equals: x floor _, y floor _, z floor
+	self assert: (x ,, y ,, z) floor equals: x floor ,, y floor ,, z floor
 ]
 
 { #category : #tests }
@@ -377,10 +379,9 @@ Jun3dPointTest >> testFraction1 [
 	x2 := -2.
 	y2 := 3.
 	z2 := 4.
-	p1 := x1 _ , y1 _ , z1.
-	p2 := x2 _ , y2 _ , z2.
-	self
-		assert: ((Jun3dPoint x: x1 / x2 y: y1 / y2 z: z1 / z2) equal: p1 / p2)
+	p1 := x1 ,, y1 ,, z1.
+	p2 := x2 ,, y2 ,, z2.
+	self assert: ((Jun3dPoint x: x1 / x2 y: y1 / y2 z: z1 / z2) equal: p1 / p2)
 ]
 
 { #category : #tests }
@@ -388,8 +389,8 @@ Jun3dPointTest >> testFraction2 [
 	"division is multiplying reciprocal"
 
 	| p1 p2 |
-	p1 := 1 _, -2 _, 3.
-	p2 := -4 _, 5 _, 6.
+	p1 := 1 ,, -2 ,, 3.
+	p2 := -4 ,, 5 ,, 6.
 	self assert: p1 / p2 equals: p1 * p2 reciprocal
 ]
 
@@ -398,8 +399,8 @@ Jun3dPointTest >> testFraction3 [
 	"dividing itself makes unity"
 
 	| p |
-	p := 1 _, -2 _, 3.
-	self assert: (p / p) equals: Jun3dPoint unity
+	p := 1 ,, -2 ,, 3.
+	self assert: p / p equals: Jun3dPoint unity
 ]
 
 { #category : #tests }
@@ -407,7 +408,7 @@ Jun3dPointTest >> testFraction4 [
 	"dividing zero is prohibited"
 
 	| p zero |
-	p := 1 _, -2 _, 3.
+	p := 1 ,, -2 ,, 3.
 	zero := Jun3dPoint zero.
 	self should: [ p / zero ] raise: ZeroDivide
 ]
@@ -417,7 +418,7 @@ Jun3dPointTest >> testFraction5 [
 	"dividing zero makes zero"
 
 	| p zero |
-	p := 1 _, -2 _, 3.
+	p := 1 ,, -2 ,, 3.
 	zero := Jun3dPoint zero.
 	self assert: zero / p equals: zero
 ]
@@ -427,8 +428,8 @@ Jun3dPointTest >> testFraction6 [
 	"multiplication and division of the same argument makes identity"
 
 	| p1 p2 |
-	p1 := 1 _, -2 _, 3.
-	p2 := 4 _, 4 _, -1.
+	p1 := 1 ,, -2 ,, 3.
+	p2 := 4 ,, 4 ,, -1.
 	self assert: p1 * p2 / p2 equals: p1
 ]
 
@@ -453,7 +454,7 @@ Jun3dPointTest >> testFromNumber [
 { #category : #tests }
 Jun3dPointTest >> testFromPoint1 [
 	| p0 p |
-	p0 := 1 _ , -2 _ , 3.
+	p0 := 1 ,, -2 ,, 3.
 	p := Jun3dPoint fromPoint: p0.
 	self assert: p equals: p0
 ]
@@ -461,7 +462,7 @@ Jun3dPointTest >> testFromPoint1 [
 { #category : #tests }
 Jun3dPointTest >> testFromPoint2 [
 	| p0 p |
-	p0 := 1 _, -2.
+	p0 := 1 ,, -2.
 	p := Jun3dPoint fromPoint: p0.
 	self assert: p x equals: p0 x.
 	self assert: p y equals: p0 y
@@ -484,7 +485,7 @@ Jun3dPointTest >> testGrid [
 	x := 1.1.
 	y := -2.1.
 	z := 3.7.
-	self assert: (x _, y _, z grid: 1.0) equals: x rounded _, y rounded _, z rounded
+	self assert: (x ,, y ,, z grid: 1.0) equals: x rounded ,, y rounded ,, z rounded
 ]
 
 { #category : #tests }
@@ -514,69 +515,69 @@ Jun3dPointTest >> testIsZero2 [
 { #category : #tests }
 Jun3dPointTest >> testLessThan1 [
 	| p1 p2 |
-	p1 := 2 _, -3 _, 4.
-	p2 := 3 _, -2 _, 5.
+	p1 := 2 ,, -3 ,, 4.
+	p2 := 3 ,, -2 ,, 5.
 	self assert: p1 < p2
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testLessThan2 [
 	| p1 p2 |
-	p1 := 2 _, -3 _, 4.
-	p2 := 2 _, -2 _, 5.
+	p1 := 2 ,, -3 ,, 4.
+	p2 := 2 ,, -2 ,, 5.
 	self deny: p1 < p2
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testLessThan3 [
 	| p1 p2 |
-	p1 := 2 _, -3 _, 4.
-	p2 := 3 _, -3 _, 5.
+	p1 := 2 ,, -3 ,, 4.
+	p2 := 3 ,, -3 ,, 5.
 	self deny: p1 < p2
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testLessThan4 [
 	| p1 p2 |
-	p1 := 2 _, -3 _, 4.
-	p2 := 3 _, -4 _, 4.
+	p1 := 2 ,, -3 ,, 4.
+	p2 := 3 ,, -4 ,, 4.
 	self deny: p1 < p2
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testMinMax1 [
 	| p1 min max |
-	p1 := 2 _, -3 _, 4.
-	min := -10 _, -10 _, -10.
-	max := 10 _, 10 _, 10.
+	p1 := 2 ,, -3 ,, 4.
+	min := -10 ,, -10 ,, -10.
+	max := 10 ,, 10 ,, 10.
 	self assert: (p1 min: max max: min) equals: p1
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testMinMax2 [
 	| p1 min max |
-	p1 := 2 _, -3 _, 4.
-	min := 5 _, -10 _, 6.
-	max := 10 _, -5 _, 10.
-	self assert: (p1 min: max max: min) equals: min x _, max y _, min z
+	p1 := 2 ,, -3 ,, 4.
+	min := 5 ,, -10 ,, 6.
+	max := 10 ,, -5 ,, 10.
+	self assert: (p1 min: max max: min) equals: min x ,, max y ,, min z
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testMinMax3 [
 	| p1 min max |
-	p1 := 2 _, -3 _, 4.
-	min := -10_, -1_, -10.
-	max := -5 _, 10 _, 1.
-	self assert: (p1 min: max max: min) equals: max x_, min y_, max z
+	p1 := 2 ,, -3 ,, 4.
+	min := -10 ,, -1 ,, -10.
+	max := -5 ,, 10 ,, 1.
+	self assert: (p1 min: max max: min) equals: max x ,, min y ,, max z
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testMinMax4 [
 	| p1 min max |
-	p1 := 2 _, -3 _, 4.
-	min := -10_, -1_, 5.
-	max := -5 _, 10 _, 10.
-	self assert: (p1 min: max max: min) equals: max x _, min y _, min z
+	p1 := 2 ,, -3 ,, 4.
+	min := -10 ,, -1 ,, 5.
+	max := -5 ,, 10 ,, 10.
+	self assert: (p1 min: max max: min) equals: max x ,, min y ,, min z
 ]
 
 { #category : #tests }
@@ -590,8 +591,8 @@ Jun3dPointTest >> testMultiplication1 [
 	x2 := -2.
 	y2 := 3.
 	z2 := 4.
-	p1 := x1 _, y1 _, z1.
-	p2 := x2 _, y2 _, z2.
+	p1 := x1 ,, y1 ,, z1.
+	p2 := x2 ,, y2 ,, z2.
 	self assert: ((Jun3dPoint x: x1 * x2 y: y1 * y2 z: z1 * z2) equal: p1 * p2)
 ]
 
@@ -600,7 +601,7 @@ Jun3dPointTest >> testMultiplication2 [
 	"multiplying unity makes identity"
 
 	| p1 unity |
-	p1 := 1 _ , -2 _ , 3.
+	p1 := 1 ,, -2 ,, 3.
 	unity := Jun3dPoint unity.
 	self assert: p1 * unity equals: p1
 ]
@@ -610,7 +611,7 @@ Jun3dPointTest >> testMultiplication3 [
 	"multiplying zero makes zero"
 
 	| p1 zero |
-	p1 := 1 _ , -2 _ , 3.
+	p1 := 1 ,, -2 ,, 3.
 	zero := Jun3dPoint zero.
 	self assert: p1 * zero equals: zero
 ]
@@ -620,8 +621,8 @@ Jun3dPointTest >> testMultiplication4 [
 	"multiplication is exxchangeable"
 
 	| p1 p2 |
-	p1 := 1 _ , -2 _ , 3.
-	p2 := -2 _ , 3 _ , 4.
+	p1 := 1 ,, -2 ,, 3.
+	p2 := -2 ,, 3 ,, 4.
 	self assert: (p1 * p2 equal: p2 * p1)
 ]
 
@@ -630,9 +631,9 @@ Jun3dPointTest >> testMultiplication5 [
 	"multiplication is distributable"
 
 	| p1 p2 p3 |
-	p1 := 1 _ , -2 _ , 3.
-	p2 := -2 _ , 3 _ , 4.
-	p3 := 10 _ , 20 _ , -30.
+	p1 := 1 ,, -2 ,, 3.
+	p2 := -2 ,, 3 ,, 4.
+	p3 := 10 ,, 20 ,, -30.
 	self assert: p1 * p2 * p3 equals: p1 * (p2 * p3)
 ]
 
@@ -641,7 +642,7 @@ Jun3dPointTest >> testMultiplicationCoerceNumberLeft [
 	"coerce a number"
 
 	| p a |
-	p := 1 _ , -2 _ , 3.
+	p := 1 ,, -2 ,, 3.
 	a := -4.
 	self assert: a * p equals: (Jun3dPoint x: p x * a y: p y * a z: p z * a)
 ]
@@ -651,7 +652,7 @@ Jun3dPointTest >> testMultiplicationCoerceNumberRight [
 	"coerce a number"
 
 	| p a |
-	p := 1 _ , -2 _ , 3.
+	p := 1 ,, -2 ,, 3.
 	a := -4.
 	self assert: p * a equals: (Jun3dPoint x: p x * a y: p y * a z: p z * a)
 ]
@@ -661,11 +662,9 @@ Jun3dPointTest >> testMultiplicationCoercePointLeft [
 	"coerce a number"
 
 	| p1 p2 |
-	p1 := 1 _ , -2 _ , 3.
+	p1 := 1 ,, -2 ,, 3.
 	p2 := -4 @ 5.
-	self
-		assert: p2 * p1
-		equals: (Jun3dPoint x: p1 x * p2 x y: p1 y * p2 y z: 0)
+	self assert: p2 * p1 equals: (Jun3dPoint x: p1 x * p2 x y: p1 y * p2 y z: 0)
 ]
 
 { #category : #tests }
@@ -673,11 +672,9 @@ Jun3dPointTest >> testMultiplicationCoercePointRight [
 	"coerce a number"
 
 	| p1 p2 |
-	p1 := 1 _ , -2 _ , 3.
+	p1 := 1 ,, -2 ,, 3.
 	p2 := -4 @ 5.
-	self
-		assert: p1 * p2
-		equals: (Jun3dPoint x: p1 x * p2 x y: p1 y * p2 y z: 0)
+	self assert: p1 * p2 equals: (Jun3dPoint x: p1 x * p2 x y: p1 y * p2 y z: 0)
 ]
 
 { #category : #tests }
@@ -717,7 +714,7 @@ Jun3dPointTest >> testRho [
 { #category : #tests }
 Jun3dPointTest >> testRhoPhiTheta1 [
 	| p rho phi theta |
-	p := 1 _ , -2 _ , 3.
+	p := 1 ,, -2 ,, 3.
 	rho := p rho.
 	phi := p phi.
 	theta := p theta.
@@ -732,9 +729,7 @@ Jun3dPointTest >> testRounded [
 	x := 1.1.
 	y := -2.1.
 	z := 3.7.
-	self
-		assert: (x _ , y _ , z) rounded
-		equals: x rounded _ , y rounded _ , z rounded
+	self assert: (x ,, y ,, z) rounded equals: x rounded ,, y rounded ,, z rounded
 ]
 
 { #category : #tests }
@@ -748,11 +743,9 @@ Jun3dPointTest >> testSubtraction1 [
 	x2 := -2.
 	y2 := 3.
 	z2 := 4.
-	p1 := x1 _ , y1 _ , z1.
-	p2 := x2 _ , y2 _ , z2.
-	self
-		assert: p1 - p2
-		equals: (Jun3dPoint x: x1 - x2 y: y1 - y2 z: z1 - z2)
+	p1 := x1 ,, y1 ,, z1.
+	p2 := x2 ,, y2 ,, z2.
+	self assert: p1 - p2 equals: (Jun3dPoint x: x1 - x2 y: y1 - y2 z: z1 - z2)
 ]
 
 { #category : #tests }
@@ -760,8 +753,8 @@ Jun3dPointTest >> testSubtraction2 [
 	"subtraction is adding negated"
 
 	| p1 p2 |
-	p1 := 1 _ , -2 _ , 3.
-	p2 := -4 _ , 5 _ , 6.
+	p1 := 1 ,, -2 ,, 3.
+	p2 := -4 ,, 5 ,, 6.
 	self assert: p1 - p2 equals: p1 + p2 negated
 ]
 
@@ -770,7 +763,7 @@ Jun3dPointTest >> testSubtraction3 [
 	"subtracting itself makes zero"
 
 	| p |
-	p := 1 _, -2 _, 3.
+	p := 1 ,, -2 ,, 3.
 	self assert: (p - p) isZero
 ]
 
@@ -779,7 +772,7 @@ Jun3dPointTest >> testSubtraction4 [
 	"subtracting zero makes identity"
 
 	| p zero |
-	p := 1 _ , -2 _ , 3.
+	p := 1 ,, -2 ,, 3.
 	zero := Jun3dPoint zero.
 	self assert: p - zero equals: p
 ]
@@ -789,9 +782,9 @@ Jun3dPointTest >> testSubtraction5 [
 	"subtracting from zero makes negation"
 
 	| p zero |
-	p := 1 _ , -2 _ , 3.
+	p := 1 ,, -2 ,, 3.
 	zero := Jun3dPoint zero.
-	self assert: zero - p equals: -1 _ , 2 _ , -3
+	self assert: zero - p equals: -1 ,, 2 ,, -3
 ]
 
 { #category : #tests }
@@ -799,8 +792,8 @@ Jun3dPointTest >> testSubtraction6 [
 	"addition and subtraction of the same argument makes identity"
 
 	| p1 p2 |
-	p1 := 1 _ , -2 _ , 3.
-	p2 := 4 _ , 4 _ , -1.
+	p1 := 1 ,, -2 ,, 3.
+	p2 := 4 ,, 4 ,, -1.
 	self assert: p1 + p2 - p2 equals: p1
 ]
 
@@ -821,9 +814,7 @@ Jun3dPointTest >> testTruncated [
 	x := 1.1.
 	y := -2.1.
 	z := 3.7.
-	self
-		assert: (x _ , y _ , z) truncated
-		equals: x truncated _ , y truncated _ , z truncated
+	self assert: (x ,, y ,, z) truncated equals: x truncated ,, y truncated ,, z truncated
 ]
 
 { #category : #tests }
@@ -853,17 +844,17 @@ Jun3dPointTest >> testVectorProduct [
 
 { #category : #tests }
 Jun3dPointTest >> testX [
-	self assert: (1 _ , 0 _ , 0) x equals: 1
+	self assert: (1 ,, 0 ,, 0) x equals: 1
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testY [
-	self assert: (0 _ , 1 _ , 0) y equals: 1
+	self assert: (0 ,, 1 ,, 0) y equals: 1
 ]
 
 { #category : #tests }
 Jun3dPointTest >> testZ [
-	self assert: (0 _ , 0 _ , 1) z equals: 1
+	self assert: (0 ,, 0 ,, 1) z equals: 1
 ]
 
 { #category : #tests }
@@ -886,8 +877,7 @@ Jun3dPointTest >> testdivision1 [
 	x2 := -2.
 	y2 := 3.
 	z2 := 4.
-	p1 := x1 _ , y1 _ , z1.
-	p2 := x2 _ , y2 _ , z2.
-	self
-		assert: ((Jun3dPoint x: x1 // x2 y: y1 // y2 z: z1 // z2) equal: p1 // p2)
+	p1 := x1 ,, y1 ,, z1.
+	p2 := x2 ,, y2 ,, z2.
+	self assert: ((Jun3dPoint x: x1 // x2 y: y1 // y2 z: z1 // z2) equal: p1 // p2)
 ]

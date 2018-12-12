@@ -71,12 +71,12 @@ JunGeometry class >> halfPi [
 
 { #category : #utilities }
 JunGeometry class >> hemispherePoint: groundPoint center: centerPoint [
-	"JunGeometry hemispherePoint: 1_,0_,0 center: 0_,0_,1."
+	"JunGeometry hemispherePoint: 1,,0,,0 center: 0,,0,,1."
 
 	^ self
 		hemispherePoint: groundPoint
 		center: centerPoint
-		on: (0 _ , 0 _ , 0 plane: 1 _ , 0 _ , 0 and: 0 _ , 1 _ , 0)
+		on: (0 ,, 0 ,, 0 plane: 1 ,, 0 ,, 0 and: 0 ,, 1 ,, 0)
 ]
 
 { #category : #utilities }
@@ -119,14 +119,14 @@ JunGeometry class >> mobiusRadius: mobiusRadius normalizedTheta: normalizedTheta
 		ifTrue: [ y := 0.0 ].
 	z abs < self accuracy
 		ifTrue: [ z := 0.0 ].
-	point := x _ , y _ , z.
+	point := x ,, y ,, z.
 	x := mobiusRadius * theta cos.
 	y := mobiusRadius * theta sin.
 	x abs < self accuracy
 		ifTrue: [ x := 0.0 ].
 	y abs < self accuracy
 		ifTrue: [ y := 0.0 ].
-	center := x _ , y _ , 0.0.
+	center := x ,, y ,, 0.0.
 	^ (center to: point) atT: normalizedRadius
 ]
 
@@ -253,7 +253,7 @@ JunGeometry class >> sphereClass [
 ]
 
 { #category : #utilities }
-JunGeometry class >> torusRadius: torusRadius normalizedTheta: normalizedTheta tubeRadius: tubeRadius normalizedPhi: normalizedPhi [ 
+JunGeometry class >> torusRadius: torusRadius normalizedTheta: normalizedTheta tubeRadius: tubeRadius normalizedPhi: normalizedPhi [
 	"JunGeometry torusRadius: (2/3) normalizedTheta: 0 tubeRadius: (1/3) normalizedPhi: 0."
 
 	"
@@ -268,11 +268,14 @@ JunGeometry class >> torusRadius: torusRadius normalizedTheta: normalizedTheta t
 	x := (torusRadius + (tubeRadius * phi cos)) * theta cos.
 	y := (torusRadius + (tubeRadius * phi cos)) * theta sin.
 	z := tubeRadius * phi sin.
-	x abs < self accuracy ifTrue: [x := 0.0].
-	y abs < self accuracy ifTrue: [y := 0.0].
-	z abs < self accuracy ifTrue: [z := 0.0].
-	point := x _, y _, z.
-	^point
+	x abs < self accuracy
+		ifTrue: [ x := 0.0 ].
+	y abs < self accuracy
+		ifTrue: [ y := 0.0 ].
+	z abs < self accuracy
+		ifTrue: [ z := 0.0 ].
+	point := x ,, y ,, z.
+	^ point
 ]
 
 { #category : #'class access' }

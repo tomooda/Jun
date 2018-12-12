@@ -34,37 +34,31 @@ JunPlane class >> a: aNumber1 b: aNumber2 c: aNumber3 d: aNumber4 [
 	aPlane setB: aNumber2.
 	aPlane setC: aNumber3.
 	aPlane setD: aNumber4.
-	normalVector := aNumber1 _, aNumber2 _, aNumber3.
+	normalVector := aNumber1 ,, aNumber2 ,, aNumber3.
 	normalVector length < self accuracy
 		ifTrue: [ ^ self error: 'Invalid parameters.' ].
 	pa := pb := pc := nil.
 	aPlane a abs >= self accuracy
-		ifTrue: [ pa := (aPlane d / aPlane a) negated _, 0 _, 0 ].
+		ifTrue: [ pa := (aPlane d / aPlane a) negated ,, 0 ,, 0 ].
 	aPlane b abs >= self accuracy
-		ifTrue: [ pb := 0 _, (aPlane d / aPlane b) negated _, 0 ].
+		ifTrue: [ pb := 0 ,, (aPlane d / aPlane b) negated ,, 0 ].
 	aPlane c abs >= self accuracy
-		ifTrue: [ pc := 0 _, 0 _, (aPlane d / aPlane c) negated ].
+		ifTrue: [ pc := 0 ,, 0 ,, (aPlane d / aPlane c) negated ].
 	pa notNil
-		ifTrue: [ 
-			p1 := pa.
+		ifTrue: [ p1 := pa.
 			pb notNil
 				ifTrue: [ p2 := pb ]
-				ifFalse: [ 
+				ifFalse: [ pc notNil
+						ifTrue: [ p2 := pc ]
+						ifFalse: [ p2 := pa x ,, 0.0 ,, 1.0 ] ] ]
+		ifFalse: [ pb notNil
+				ifTrue: [ p1 := pb.
 					pc notNil
 						ifTrue: [ p2 := pc ]
-						ifFalse: [ p2 := pa x _, 0.0 _, 1.0 ] ] ]
-		ifFalse: [ 
-			pb notNil
-				ifTrue: [ 
-					p1 := pb.
-					pc notNil
-						ifTrue: [ p2 := pc ]
-						ifFalse: [ p2 := 1.0 _, pb y _, 0.0 ] ]
-				ifFalse: [ 
-					pc notNil
-						ifTrue: [ 
-							p1 := pc.
-							p2 := 1.0 _, 0.0 _, pc z ]
+						ifFalse: [ p2 := 1.0 ,, pb y ,, 0.0 ] ]
+				ifFalse: [ pc notNil
+						ifTrue: [ p1 := pc.
+							p2 := 1.0 ,, 0.0 ,, pc z ]
 						ifFalse: [ self error: 'Invalid parameters.' ] ] ].
 	p2 := p1 + (p2 - p1) unitVector.
 	p3 := p1 - p2 vectorProduct: normalVector unitVector.
@@ -139,54 +133,59 @@ JunPlane class >> on: aPoint vertical: aLine [
 	aPlane setA: theLine f.
 	aPlane setB: theLine g.
 	aPlane setC: theLine h.
-	aPlane setD: (theLine f * thePoint x + (theLine g * thePoint y) + (theLine h * thePoint z)) negated.
+	aPlane
+		setD: (theLine f * thePoint x + (theLine g * thePoint y) + (theLine h * thePoint z)) negated.
 	aPlane a squared + aPlane b squared + aPlane c squared < self accuracy
 		ifTrue: [ ^ self error: 'can not define a plane' ].
 	p1 := thePoint.
 	firstLine := theLine.
-	threeAxes := Array with: (0 _, 0 _, 0 to: 1 _, 0 _, 0) with: (0 _, 0 _, 0 to: 0 _, 1 _, 0) with: (0 _, 0 _, 0 to: 0 _, 0 _, 1).
+	threeAxes := Array
+		with: (0 ,, 0 ,, 0 to: 1 ,, 0 ,, 0)
+		with: (0 ,, 0 ,, 0 to: 0 ,, 1 ,, 0)
+		with: (0 ,, 0 ,, 0 to: 0 ,, 0 ,, 1).
 	firstAxis := threeAxes detect: [ :line | (firstLine isParallelWithLine: line) not ].
 	aTransformation := Jun3dTransformation translate: firstAxis to.
 	thePoint := nil.
 	[ thePoint isNil or: [ thePoint equal: p1 ] ]
-		whileTrue: [ 
-			firstLine := firstLine transform: aTransformation.
+		whileTrue: [ firstLine := firstLine transform: aTransformation.
 			thePoint := aPlane intersectingPointWithLine: firstLine ].
 	p2 := thePoint.
 	secondLine := firstLine.
-	threeAxes := Array with: (0 _, 0 _, 0 to: 0 _, 1 _, 0) with: (0 _, 0 _, 0 to: 0 _, 0 _, 1) with: (0 _, 0 _, 0 to: 1 _, 0 _, 0).
+	threeAxes := Array
+		with: (0 ,, 0 ,, 0 to: 0 ,, 1 ,, 0)
+		with: (0 ,, 0 ,, 0 to: 0 ,, 0 ,, 1)
+		with: (0 ,, 0 ,, 0 to: 1 ,, 0 ,, 0).
 	secondAxis := threeAxes
-		detect: [ :line | (secondLine isParallelWithLine: line) not and: [ (line to = firstAxis to) not ] ].
+		detect:
+			[ :line | (secondLine isParallelWithLine: line) not and: [ (line to = firstAxis to) not ] ].
 	aTransformation := Jun3dTransformation translate: secondAxis to.
 	thePoint := nil.
 	[ thePoint isNil or: [ (thePoint equal: p2) or: [ thePoint equal: p1 ] ] ]
-		whileTrue: [ 
-			secondLine := secondLine transform: aTransformation.
+		whileTrue: [ secondLine := secondLine transform: aTransformation.
 			thePoint := aPlane intersectingPointWithLine: secondLine ].
 	p3 := thePoint.
 	((p1 to: p2) isParallelWithLine: (p1 to: p3))
-		ifTrue: [ 
-			thirdLine := firstLine.
-			threeAxes := Array with: (0 _, 0 _, 0 to: 0 _, 0 _, 1) with: (0 _, 0 _, 0 to: 1 _, 0 _, 0) with: (0 _, 0 _, 0 to: 0 _, 1 _, 0).
-			thirdAxis := threeAxes detect: [ :line | (line to = firstAxis to) not and: [ (line to = secondAxis to) not ] ].
+		ifTrue: [ thirdLine := firstLine.
+			threeAxes := Array
+				with: (0 ,, 0 ,, 0 to: 0 ,, 0 ,, 1)
+				with: (0 ,, 0 ,, 0 to: 1 ,, 0 ,, 0)
+				with: (0 ,, 0 ,, 0 to: 0 ,, 1 ,, 0).
+			thirdAxis := threeAxes
+				detect: [ :line | (line to = firstAxis to) not and: [ (line to = secondAxis to) not ] ].
 			aTransformation := Jun3dTransformation translate: thirdAxis to.
 			thePoint := nil.
 			[ thePoint isNil or: [ thePoint equal: p2 ] ]
-				whileTrue: [ 
-					thirdLine := thirdLine transform: aTransformation.
+				whileTrue: [ thirdLine := thirdLine transform: aTransformation.
 					thePoint := aPlane intersectingPointWithLine: thirdLine ].
 			p3 := thePoint ].
-	[ 
-	| normalUnitVector anotherUnitVector |
+	[ | normalUnitVector anotherUnitVector |
 	normalUnitVector := aPlane normalUnitVector.
 	anotherUnitVector := (self on: p1 on: p2 on: p3) normalUnitVector.
 	(normalUnitVector equal: anotherUnitVector)
-		ifTrue: [ 
-			aPlane
+		ifTrue: [ aPlane
 				setP2: p2;
 				setP3: p3 ]
-		ifFalse: [ 
-			aPlane
+		ifFalse: [ aPlane
 				setP2: p3;
 				setP3: p2 ] ]
 		on: Error
@@ -217,37 +216,40 @@ JunPlane class >> with: aJun3dPoint1 with: aJun3dPoint2 with: aJun3dPoint3 [
 { #category : #constants }
 JunPlane class >> xy [
 	"(JunPlane xy) asJunOpenGL3dObject show."
+
 	"(JunOpenGL3dCompoundObject 
 		with: JunPlane xy asJunOpenGL3dObject
 		with: JunPlane yz asJunOpenGL3dObject
 		with: JunPlane zx asJunOpenGL3dObject
 		with: JunOpenGL3dObject xyzArrows) show."
 
-	^ self on: 0 _, 0 _, 0 on: 1 _, 0 _, 0 on: 0 _, 1 _, 0
+	^ self on: 0 ,, 0 ,, 0 on: 1 ,, 0 ,, 0 on: 0 ,, 1 ,, 0
 ]
 
 { #category : #constants }
 JunPlane class >> yz [
 	"(JunPlane yz) asJunOpenGL3dObject show."
+
 	"(JunOpenGL3dCompoundObject 
 		with: JunPlane xy asJunOpenGL3dObject
 		with: JunPlane yz asJunOpenGL3dObject
 		with: JunPlane zx asJunOpenGL3dObject
 		with: JunOpenGL3dObject xyzArrows) show."
 
-	^ self on: 0 _, 0 _, 0 on: 0 _, 1 _, 0 on: 0 _, 0 _, 1
+	^ self on: 0 ,, 0 ,, 0 on: 0 ,, 1 ,, 0 on: 0 ,, 0 ,, 1
 ]
 
 { #category : #constants }
 JunPlane class >> zx [
 	"(JunPlane zx) asJunOpenGL3dObject show."
+
 	"(JunOpenGL3dCompoundObject 
 		with: JunPlane xy asJunOpenGL3dObject
 		with: JunPlane yz asJunOpenGL3dObject
 		with: JunPlane zx asJunOpenGL3dObject
 		with: JunOpenGL3dObject xyzArrows) show."
 
-	^ self on: 0 _, 0 _, 0 on: 0 _, 0 _, 1 on: 1 _, 0 _, 0
+	^ self on: 0 ,, 0 ,, 0 on: 0 ,, 0 ,, 1 on: 1 ,, 0 ,, 0
 ]
 
 { #category : #comparing }

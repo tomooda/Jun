@@ -82,8 +82,9 @@ JunPerspectiveProjection >> asTransformation [
 		fromOrigin: self sightPoint
 		xAxis: self unitRightVector
 		yAxis: self unitUpVector
-		zAxis: self unitSightVector negated) product: (Jun3dTransformation perspective: 0 _, 0 , depth))
-		product: (Jun3dTransformation scale: xyScale , xyScale , depth reciprocal negated)
+		zAxis: self unitSightVector negated)
+		product: (Jun3dTransformation perspective: 0 ,, 0 ,, depth))
+		product: (Jun3dTransformation scale: xyScale ,, xyScale ,, depth reciprocal negated)
 ]
 
 { #category : #accessing }

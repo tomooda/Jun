@@ -58,13 +58,8 @@ Jun1dPoint >> + aPoint [
 ]
 
 { #category : #converting }
-Jun1dPoint >> , aNumberOrJun1dPoint [
-	^ Jun2dPoint
-		x: self x
-		y:
-			(aNumberOrJun1dPoint isPoint
-				ifTrue: [ aNumberOrJun1dPoint x ]
-				ifFalse: [ aNumberOrJun1dPoint ])
+Jun1dPoint >> ,, aNumber [
+	^ Jun2dPoint x: self x y: aNumber
 ]
 
 { #category : #arithmetic }
@@ -123,12 +118,12 @@ Jun1dPoint >> abs [
 
 { #category : #converting }
 Jun1dPoint >> as2dPoint [
-	^ self , 0.0
+	^ self ,, 0.0
 ]
 
 { #category : #converting }
 Jun1dPoint >> as3dPoint [
-	^ self , 0.0, 0.0
+	^ self ,, 0.0 ,, 0.0
 ]
 
 { #category : #converting }
