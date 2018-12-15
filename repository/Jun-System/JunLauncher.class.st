@@ -469,8 +469,8 @@ JunLauncher >> exampleRotatingBouncingBalls [
 		product: (Jun3dTransformation scale: 2).
 	rotation := Jun3dTransformation unity.
 	omega := (((Jun3dTransformation translate: -5 ,, -5 ,, -5)
-		product: (Jun3dTransformation rotateX: 1 asDegrees))
-		product: (Jun3dTransformation rotateY: 2 asDegrees))
+		product: (Jun3dTransformation rotateX: 0.1 asDegrees))
+		product: (Jun3dTransformation rotateY: 0.2 asDegrees))
 		product: (Jun3dTransformation translate: 5 ,, 5 ,, 5).
 	form := Form extent: 400 @ 400 depth: 32.
 	offset := form extent // 2.
