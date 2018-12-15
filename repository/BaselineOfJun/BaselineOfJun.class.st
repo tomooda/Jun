@@ -31,3 +31,8 @@ BaselineOfJun >> baseline: spec [
 				group: 'Chemistry' with: #(#'Jun-Chemistry' 'Core');
 				group: 'Chemistry-Full' with: #('Chemistry' 'Jun-Chemistry-Babel') ]
 ]
+
+{ #category : #actions }
+BaselineOfJun >> postload: loader package: packageSpec [
+	SDL_KeyboardEvent initializeAccessors
+]
