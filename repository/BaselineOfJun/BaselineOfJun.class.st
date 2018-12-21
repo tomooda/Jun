@@ -22,7 +22,10 @@ BaselineOfJun >> baseline: spec [
 				package: 'Jun-Chemistry' with: [ spec requires: #('Jun-Geometry' 'Jun-Graphics') ];
 				package: 'Jun-Chemistry-Babel'
 					with: [ spec requires: #(#'Jun-Chemistry' 'OSSubprocess') ];
-				package: 'Jun-UFFIOpenGL' with: [ spec requires: #('UFFIOpenGL') ];
+				package: 'Jun-UFFIOpenGL'
+					with: [ spec
+						postLoadDoIt: #postload:package:;
+						requires: #('UFFIOpenGL') ];
 				package: 'Jun-GT' with: [ spec requires: #('Jun-Graphics') ].
 			spec
 				group: 'Core' with: #('Jun-System' 'Jun-UFFIOpenGL' 'Minimal');
