@@ -47,18 +47,26 @@ JunBabelWrapper class >> bondsFromXYZ: aString do: aBlock [
 
 { #category : #utilities }
 JunBabelWrapper class >> convert: aString from: format1 to: format2 [
-	| process output |
-	process := OSSUnixSubprocess new
-		command: self babelProgramName;
-		arguments:
+	^ self
+		exec: self babelProgramName
+		args:
 			{'-i'.
 			format1.
 			'-o'.
-			format2};
+			format2}
+		stdin: aString
+]
+
+{ #category : #utilities }
+JunBabelWrapper class >> exec: aPathString args: anArrayOfString stdin: aDataString [
+	| process output |
+	process := OSSUnixSubprocess new
+		command: aPathString;
+		arguments: anArrayOfString;
 		redirectStdin;
 		redirectStdout;
 		run.
-	process stdinStream nextPutAll: aString.
+	process stdinStream nextPutAll: aDataString.
 	process waitForExit.
 	output := process stdoutStream upToEnd.
 	process closeAndCleanStreams.
