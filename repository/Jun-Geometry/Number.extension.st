@@ -11,6 +11,12 @@ Number >> asDegrees [
 ]
 
 { #category : #'*Jun-Geometry-Basic' }
+Number >> asJun3dPoint [
+
+	^ Jun3dPoint x: self y: self z: self
+]
+
+{ #category : #'*Jun-Geometry-Basic' }
 Number >> asRadians [
 	^ JunAngle radians: self
 ]

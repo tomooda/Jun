@@ -24,7 +24,7 @@ Class {
 		'y',
 		'z'
 	],
-	#category : 'Jun-Geometry-Basic'
+	#category : #'Jun-Geometry-Basic'
 }
 
 { #category : #examples }
@@ -482,6 +482,17 @@ Jun3dPoint >> is3d [
 { #category : #testing }
 Jun3dPoint >> isZero [
 	^ (x isZero and: [ y isZero ]) and: [ z isZero ]
+]
+
+{ #category : #functions }
+Jun3dPoint >> length: aNumber [
+
+	| length scale |
+	length := self length.
+	length > self class accuracy
+		ifTrue: [ scale := aNumber / length ]
+		ifFalse: [ ^ self ].
+	^ self * scale asJun3dPoint
 ]
 
 { #category : #comparing }

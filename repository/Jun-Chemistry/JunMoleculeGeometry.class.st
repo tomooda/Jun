@@ -6,7 +6,7 @@ Class {
 		'bonds',
 		'label'
 	],
-	#category : 'Jun-Chemistry-Geometry'
+	#category : #'Jun-Chemistry-Geometry'
 }
 
 { #category : #examples }
@@ -584,6 +584,14 @@ JunMoleculeGeometry >> renderOn: aJunRenderingContext [
 		ifTrue: [ self do: [ :atom | atom renderRoughOn: aJunRenderingContext ] ]
 		ifFalse: [ self do: [ :atom | atom renderOn: aJunRenderingContext ] ].
 	self bondsDo: [ :bond | bond renderOn: aJunRenderingContext ]
+]
+
+{ #category : #rendering }
+JunMoleculeGeometry >> renderRoughOn: aJunRenderingContext [
+
+	self
+		do: [ :atom | atom renderRoughOn: aJunRenderingContext ];
+		bondsDo: [ :bond | bond renderRoughOn: aJunRenderingContext ]
 ]
 
 { #category : #'adding/removing' }
