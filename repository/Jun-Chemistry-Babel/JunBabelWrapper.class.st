@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 JunBabelWrapper class >> babelProgramName [
-	^ 'babel'
+	^ 'obabel'
 ]
 
 { #category : #utilities }
@@ -59,14 +59,18 @@ JunBabelWrapper class >> convert: aString from: format1 to: format2 [
 
 { #category : #utilities }
 JunBabelWrapper class >> exec: aPathString args: anArrayOfString stdin: aDataString [
+
 	| process output |
 	process := OSSUnixSubprocess new
-		command: aPathString;
-		arguments: anArrayOfString;
-		redirectStdin;
-		redirectStdout;
-		run.
-	process stdinStream nextPutAll: aDataString.
+		           command: aPathString;
+		           arguments: anArrayOfString;
+		           redirectStdin;
+		           redirectStdout;
+		           run.
+	process stdinStream
+		nextPutAll: aDataString;
+		flush;
+		closeWriter.
 	process waitForExit.
 	output := process stdoutStream upToEnd.
 	process closeAndCleanStreams.
