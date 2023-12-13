@@ -86,7 +86,8 @@ JunBabelWrapper class >> findBabelPath [
 
 	| basename |
 	basename := 'obabel'.
-	((OSEnvironment current at: 'PATH') substrings: ':') do: [ :path |
+	((OSEnvironment current at: 'PATH') substrings: ':')
+	, { '/usr/local/bin' } do: [ :path |
 		(path asFileReference / basename) isExecutable ifTrue: [
 			^ path , '/' , basename ] ].
 	^ 'obabel'
