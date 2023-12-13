@@ -1,12 +1,16 @@
 Class {
 	#name : #JunBabelWrapper,
 	#superclass : #Object,
+	#classVars : [
+		'BabelPath'
+	],
 	#category : #'Jun-Chemistry-Babel'
 }
 
 { #category : #accessing }
 JunBabelWrapper class >> babelProgramName [
-	^ 'obabel'
+
+	^ BabelPath ifNil: [ BabelPath := self findBabelPath ]
 ]
 
 { #category : #utilities }
@@ -75,4 +79,21 @@ JunBabelWrapper class >> exec: aPathString args: anArrayOfString stdin: aDataStr
 	output := process stdoutStream upToEnd.
 	process closeAndCleanStreams.
 	^ output
+]
+
+{ #category : #private }
+JunBabelWrapper class >> findBabelPath [
+
+	| basename |
+	basename := 'obabel'.
+	((OSEnvironment current at: 'PATH') substrings: ':') do: [ :path |
+		(path asFileReference / basename) isExecutable ifTrue: [
+			^ path , '/' , basename ] ].
+	^ 'obabel'
+]
+
+{ #category : #private }
+JunBabelWrapper class >> flushBabelPath [
+
+	BabelPath := nil
 ]
