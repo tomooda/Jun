@@ -18,7 +18,7 @@ Install
 ```
 Metacello new
     baseline: 'Jun';
-    repository: 'github://tomooda/Jun';
+    repository: 'github://tomooda/Jun:main';
     load.
 ```
 
