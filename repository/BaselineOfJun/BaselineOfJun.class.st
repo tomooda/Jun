@@ -1,17 +1,18 @@
 Class {
-	#name : #BaselineOfJun,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfJun
+	#name : 'BaselineOfJun',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfJun',
+	#package : 'BaselineOfJun'
 }
 
-{ #category : #baseline }
+{ #category : 'baseline' }
 BaselineOfJun >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
 		do: [ spec
 				baseline: 'UFFIOpenGL'
-					with: [ spec repository: 'github://ronsaldo/uffi-opengl/tonel' ];
+					with: [ spec repository: 'github://tomooda/uffi-opengl/tonel' ];
 				baseline: 'OSSubprocess'
 					with: [ spec repository: 'github://pharo-contributions/OSSubprocess/repository' ].
 			spec
@@ -35,7 +36,7 @@ BaselineOfJun >> baseline: spec [
 				group: 'Chemistry-Full' with: #('Chemistry' 'Jun-Chemistry-Babel') ]
 ]
 
-{ #category : #actions }
+{ #category : 'actions' }
 BaselineOfJun >> postload: loader package: packageSpec [
 	SDL_KeyboardEvent initializeAccessors
 ]
